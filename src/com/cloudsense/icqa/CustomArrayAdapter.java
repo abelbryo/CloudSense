@@ -9,6 +9,11 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+/**
+ * A custom ArrayAdapter to display an icon and a text
+ * in a single row in a FragmentList. 
+ */
+
 public class CustomArrayAdapter extends ArrayAdapter<CustomData> {
 	
 	private Activity mContext; 
