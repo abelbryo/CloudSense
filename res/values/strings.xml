@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">CloudSense</string>
+    <string name="title">List of Parameters</string>
+    <string name="menu_settings">Settings</string>
+
+</resources>
