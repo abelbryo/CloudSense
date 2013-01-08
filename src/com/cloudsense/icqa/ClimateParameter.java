@@ -1,6 +1,7 @@
 package com.cloudsense.icqa;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.View;
@@ -39,7 +40,14 @@ public class ClimateParameter extends ListFragment {
 	}
 	
 	public void onListItemClick(ListView l, View v, int position, long id){
-		mCallback.onClimateParamSelected(position);
+		
+		if  (position == 5){ 	/* This is just to test how I can implement the map */
+			Intent intent = new Intent();
+			intent.setClass(getActivity(), IndoorMap.class);
+			getActivity().startActivity(intent); // Testing	
+		}else
+			mCallback.onClimateParamSelected(position);
+		
 		getListView().setItemChecked(position, true);
 	}
 	
