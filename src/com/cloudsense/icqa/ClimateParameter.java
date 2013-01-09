@@ -43,8 +43,8 @@ public class ClimateParameter extends ListFragment {
 
 	public void onListItemClick(ListView l, View v, int position, long id) {
 		Intent intent = new Intent();
-		if (getRowName(position) == ParamEnum.MAP.getRowName()) { 
-			// if the user clicks on the map row
+		if (getRowName(position).equals(ParamEnum.MAP.getRowName())) { 
+			// If the user clicks on the Map row
 			// Start a map activity
 			intent.setClass(getActivity(), IndoorMap.class);
 			getActivity().startActivity(intent); // Testing
