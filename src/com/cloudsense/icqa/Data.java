@@ -9,23 +9,22 @@ package com.cloudsense.icqa;
 
 public class Data {
 	
-	static String[] values = { 
-		"CO2 level", 
-		"Temprature", 
-		"Humidity",
-		"Indoor Pressure", 
-		"Luminance", 
-		"Map" 
-		};
+	/* This method returns what is displayed when a list is clicked */	
+	public static String getValue ( int position ){
+		return getClimateParams()[position].getTitle();
+	}
+	
+	
 
 	public static CustomData[] getClimateParams() {
 		return new CustomData[] {
-				new CustomData(R.drawable.ic_launcher_1, "CO2"),
-				new CustomData(R.drawable.ic_launcher_1, "Temprature"),
-				new CustomData(R.drawable.ic_launcher_1, "Humidity"),
-				new CustomData(R.drawable.ic_launcher_1, "Pressure"),
-				new CustomData(R.drawable.ic_launcher_1, "Luminance"),
-				new CustomData(R.drawable.ic_launcher_1, "Map") };
+				new CustomData(R.drawable.ic_launcher_1, ParamEnum.CO2.getRowName()),
+				new CustomData(R.drawable.ic_launcher_1, ParamEnum.INDOOR_PRESSURE.getRowName()),
+				new CustomData(R.drawable.ic_launcher_1, ParamEnum.TEMPERATURE.getRowName()),
+				new CustomData(R.drawable.ic_launcher_1, ParamEnum.HUMIDITY.getRowName()),
+				new CustomData(R.drawable.ic_launcher_1, ParamEnum.LUMINANCE.getRowName()),
+				new CustomData(R.drawable.ic_launcher_1, ParamEnum.MAP.getRowName()),
+			};
 
 	};
 }

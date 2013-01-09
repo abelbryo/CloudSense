@@ -31,7 +31,7 @@ public class ClimateParamDescription extends Fragment{
 	
 	public void updateDescriptionView(int position){
 		TextView desc = (TextView) getActivity().findViewById(R.id.climate_param_desc);
-		desc.setText(Data.values[position]);
+		desc.setText(Data.getValue(position));
 		mCurrent = position;
 	}
 	
