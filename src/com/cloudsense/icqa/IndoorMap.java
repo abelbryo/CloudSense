@@ -1,11 +1,12 @@
 package com.cloudsense.icqa;
 
+import android.os.Bundle;
+
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-
-import android.os.Bundle;
 
 public class IndoorMap extends android.support.v4.app.FragmentActivity {
 
@@ -33,11 +34,13 @@ public class IndoorMap extends android.support.v4.app.FragmentActivity {
 	public void setUpMap() {
 		mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 		
-		LatLng point = new LatLng(0, 0);
+		LatLng point = new LatLng(60.18716, 24.81899); 
 		MarkerOptions marker = new MarkerOptions().position(point)
-				.title("Point 0 0")
-				.snippet("Isn't that cool?");
+				.title("TUAS")
+				.snippet("Here is where we work");
 		mMap.addMarker(marker);
+		mMap.moveCamera( CameraUpdateFactory.newLatLngZoom(point , 16.0f) );
+
 	}
 
 }
