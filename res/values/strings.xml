@@ -3,6 +3,19 @@
 
     <string name="app_name">CloudSense</string>
     <string name="title">List of Parameters</string>
+   
+    
+    <!-- feedback activity  -->
+    <string name="feedback_title">How do you feel about the climate quality in the room?</string>
+    <string name="submit_button">Submit</string>
+    <string name="hint">Pick adjectives from below. </string>
+    
+    
+    <!-- indoor map  -->
+     <string name="transparency">Transparency</string>
+    
+    
+    
     <string name="menu_settings">Settings</string>
 
 </resources>

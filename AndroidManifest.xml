@@ -7,17 +7,33 @@
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="17" />
+   
+   <permission
+        android:name="com.cloudsense.icqa.permission.MAPS_RECEIVE"
+        android:protectionLevel="signature" />
 
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="com.cloudsense.icqa.permission.MAPS_RECEIVE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+        
+    <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyB3G1I5zR-gkD2FIjw0NQxG_9P8Uptvs7M" />
+        
         <activity
-            android:name="com.cloudsense.icqa.MainActivity"
+            android:name="com.cloudsense.icqa.Feedback"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,8 +41,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.cloudsense.icqa.IndoorMap" >
-        </activity>
+        <activity android:name="com.cloudsense.icqa.IndoorMap" ></activity>
+        <activity android:name="com.cloudsense.icqa.MainActivity"></activity>
     </application>
 
 </manifest>

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class ClimateParameter extends ListFragment {
 	OnClimateParamSelectedListener mCallback;
@@ -46,8 +47,9 @@ public class ClimateParameter extends ListFragment {
 		if (getRowName(position).equals(ParamEnum.MAP.getRowName())) { 
 			// If the user clicks on the Map row
 			// Start a map activity
+			Toast.makeText(getActivity(), "Loading map ...", Toast.LENGTH_SHORT).show();
 			intent.setClass(getActivity(), IndoorMap.class);
-			getActivity().startActivity(intent); // Testing
+			getActivity().startActivity(intent); 
 		} else
 			mCallback.onClimateParamSelected(position);
 
