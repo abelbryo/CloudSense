@@ -40,7 +40,10 @@
         android:layout_marginBottom="45dp"
         android:text="@string/submit_button" />
     
-    <!-- Choice Buttons -->
+    
+<!-- ======================================= -->
+    		<!-- Choice Buttons -->
+<!-- ======================================= -->
 
     <Button
         android:id="@+id/button2"

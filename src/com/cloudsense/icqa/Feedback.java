@@ -54,6 +54,15 @@ public class Feedback extends Activity {
 				startActivity(intent);
 			}
 		});
-	}
+	} // end onCreate
+	
+	/*****************************************************
+	 * TO DO
+	 * Implement the methods that will send the data over
+	 * via TCP/IP.
+	 * 
+	 *****************************************************/
+	
+	
 
 }
