@@ -39,7 +39,7 @@ public class IndoorMap extends android.support.v4.app.FragmentActivity {
 				.title("TUAS")
 				.snippet("Here is where we work");
 		mMap.addMarker(marker);
-		mMap.moveCamera( CameraUpdateFactory.newLatLngZoom(point , 16.0f) );
+		mMap.moveCamera( CameraUpdateFactory.newLatLngZoom(point , 17.0f) );
 
 	}
 
