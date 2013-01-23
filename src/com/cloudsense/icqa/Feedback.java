@@ -101,7 +101,7 @@ public class Feedback extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				String url = "http://130.233.124.173:9000/sayHello";
+				String url = "http://130.233.124.173:9000/xmlPost";
 				new AsyncHttpPost().execute(url);
 				Intent intent = getIntent();
 				intent.setClass(getApplicationContext(), MainActivity.class);
@@ -109,8 +109,6 @@ public class Feedback extends Activity {
 
 				// Toast.makeText(getApplicationContext(),
 				// writeXml(chosen),Toast.LENGTH_LONG).show();
-
-				
 
 			}
 		});
@@ -151,7 +149,9 @@ public class Feedback extends Activity {
 
 	public class AsyncHttpPost extends AsyncTask<String, String, String> {
 
-		/* (non-Javadoc)
+		/*
+		 * (non-Javadoc)
+		 * 
 		 * @see android.os.AsyncTask#doInBackground(Params[])
 		 */
 		@Override
@@ -160,14 +160,23 @@ public class Feedback extends Activity {
 			String str = "";
 
 			HttpClient httpclient = new DefaultHttpClient();
-			HttpPost httppost = new HttpPost(params[0]); // url
+			HttpPost httpPost = new HttpPost(params[0]); // url
 
 			try {
-				String name = "Beriyo";
-				StringEntity entity = new StringEntity("name="+name, "UTF-8");
-				httppost.setEntity(entity);
-				httppost.addHeader("Content-Type", "application/x-www-form-urlencoded");   // This MIME type is FUCKING IMPORTANT. Spent few hours not knowing it.
-				HttpResponse response = httpclient.execute(httppost);
+				// String name = "Beriyo";
+				// StringEntity entity = new StringEntity("name="+name,
+				// "UTF-8");
+				// httppost.setEntity(entity);
+				// httppost.addHeader("Content-Type",
+				// "application/x-www-form-urlencoded"); // This MIME type is
+				// FUCKING IMPORTANT for forms. Spent few hours not knowing it.
+
+				String xml = writeXml(chosen);
+				StringEntity entity = new StringEntity(xml, "UTF-8");
+				httpPost.setEntity(entity);
+				httpPost.addHeader("Accept", "application/xml");
+				httpPost.addHeader("Content-Type", "application/xml");
+				HttpResponse response = httpclient.execute(httpPost);
 				StatusLine statusLine = response.getStatusLine();
 				if (statusLine.getStatusCode() == HttpURLConnection.HTTP_OK) {
 					result = EntityUtils.toByteArray(response.getEntity());
@@ -180,45 +189,11 @@ public class Feedback extends Activity {
 
 			return str;
 		}
-		
+
 		@Override
-		protected void onPostExecute(String result){
-			Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
+		protected void onPostExecute(String result) {
+			Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG)
+					.show();
 		}
-		
-		
-		
-
-		/*
-		 * 
-		 * private void uploadToWebServer() throws ClientProtocolException,
-		 * IOException { String link = "http://130.233.124.173:9000/sayHello";
-		 * 
-		 * HttpClient httpclient = new DefaultHttpClient(); HttpPost httppost =
-		 * new HttpPost(link);
-		 * 
-		 * try {
-		 * 
-		 * 
-		 * String xmlFile ="Beriyo"; //writeXml(chosen); StringEntity entity =
-		 * new StringEntity("name="+xmlFile, "UTF-8");
-		 * httppost.setEntity(entity); // httppost.addHeader("Accept",
-		 * "application/xml"); // httppost.addHeader("Content-Type",
-		 * "application/xml");
-		 * 
-		 * httppost.addHeader("Content-Type", "text/html");
-		 * 
-		 * HttpResponse response = httpclient.execute(httppost);
-		 * 
-		 * if (response.getStatusLine() != null) Toast.makeText(getParent(),
-		 * (CharSequence) response.getStatusLine(), Toast.LENGTH_SHORT).show();
-		 * //You can get response from calling response.getEntity() and
-		 * manipulate with it as you need. } catch (ClientProtocolException e) {
-		 * // TODO Auto-generated catch block e.printStackTrace(); } catch
-		 * (IOException e) { // TODO Auto-generated catch block
-		 * e.printStackTrace(); } }
-		 */
-
 	}
-
 }
