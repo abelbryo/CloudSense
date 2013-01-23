@@ -33,13 +33,12 @@ public class IndoorMap extends android.support.v4.app.FragmentActivity {
 
 	public void setUpMap() {
 		mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-		
-		LatLng point = new LatLng(60.18716, 24.81899); 
+
+		LatLng point = new LatLng(60.18716, 24.81899);
 		MarkerOptions marker = new MarkerOptions().position(point)
-				.title("TUAS")
-				.snippet("Here is where we work");
+				.title("TUAS").snippet("Here is where we work");
 		mMap.addMarker(marker);
-		mMap.moveCamera( CameraUpdateFactory.newLatLngZoom(point , 17.0f) );
+		mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(point, 17.0f));
 
 	}
 

@@ -36,6 +36,7 @@ public class Feedback extends Activity {
 	private Button feedbackSubmit;
 
 	private static final int CHOICE_BUTTON_NO = 8;
+	private static final String SERVER_URL = "http://130.233.124.173:9000/xmlPost";
 
 	private Button[] buttonArray; // 8 buttons so far
 	private EditText editText;
@@ -101,15 +102,11 @@ public class Feedback extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				String url = "http://130.233.124.173:9000/xmlPost";
-				new AsyncHttpPost().execute(url);
+
+				new AsyncHttpPost().execute(SERVER_URL);
 				Intent intent = getIntent();
 				intent.setClass(getApplicationContext(), MainActivity.class);
 				startActivity(intent);
-
-				// Toast.makeText(getApplicationContext(),
-				// writeXml(chosen),Toast.LENGTH_LONG).show();
-
 			}
 		});
 	} // end onCreate
@@ -144,16 +141,9 @@ public class Feedback extends Activity {
 		}
 	}
 
-	// / Throws NetworkOnMainThreadException
-	// Use AsyncTask
-
+	// Upload XML on AsyncTask
 	public class AsyncHttpPost extends AsyncTask<String, String, String> {
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see android.os.AsyncTask#doInBackground(Params[])
-		 */
 		@Override
 		protected String doInBackground(String... params) {
 			byte[] result = null;

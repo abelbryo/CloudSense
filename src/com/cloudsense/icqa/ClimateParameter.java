@@ -44,19 +44,20 @@ public class ClimateParameter extends ListFragment {
 
 	public void onListItemClick(ListView l, View v, int position, long id) {
 		Intent intent = new Intent();
-		if (getRowName(position).equals(ParamEnum.MAP.getRowName())) { 
+		if (getRowName(position).equals(ParamEnum.MAP.getRowName())) {
 			// If the user clicks on the Map row
 			// Start a map activity
-			Toast.makeText(getActivity(), "Loading map ...", Toast.LENGTH_SHORT).show();
+			Toast.makeText(getActivity(), "Loading map ...", Toast.LENGTH_SHORT)
+					.show();
 			intent.setClass(getActivity(), IndoorMap.class);
-			getActivity().startActivity(intent); 
+			getActivity().startActivity(intent);
 		} else
 			mCallback.onClimateParamSelected(position);
 
 		getListView().setItemChecked(position, true);
 	}
-	
-	public String getRowName(int position){
+
+	public String getRowName(int position) {
 		return mData[position].getTitle();
 	}
 

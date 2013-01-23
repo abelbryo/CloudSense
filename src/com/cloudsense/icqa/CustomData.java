@@ -1,16 +1,16 @@
 package com.cloudsense.icqa;
 
 public class CustomData {
-	private int icon; 
-	private String title; 
-	
-	public CustomData(int icon, String title){
-		this.icon = icon; 
+	private int icon;
+	private String title;
+
+	public CustomData(int icon, String title) {
+		this.icon = icon;
 		this.title = title;
 	}
-	
+
 	/* Getters and Setters */
-	
+
 	public int getIcon() {
 		return icon;
 	}
@@ -26,5 +26,5 @@ public class CustomData {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	
+
 }
