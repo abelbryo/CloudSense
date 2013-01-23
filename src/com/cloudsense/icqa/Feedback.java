@@ -1,18 +1,26 @@
 package com.cloudsense.icqa;
 
 import java.io.StringWriter;
+import java.net.HttpURLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.StatusLine;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
 import org.xmlpull.v1.XmlSerializer;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.provider.Settings.Secure;
 import android.text.Editable;
 import android.text.Selection;
 import android.text.TextUtils;
@@ -33,7 +41,7 @@ public class Feedback extends Activity {
 	private EditText editText;
 	private ArrayList<String> chosen;
 	private String ANDROID_ID = Settings.Secure.ANDROID_ID;
-	
+
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.feedback);
@@ -93,34 +101,39 @@ public class Feedback extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				Toast.makeText(getApplicationContext(), writeXml(chosen), Toast.LENGTH_LONG).show();
+				String url = "http://130.233.124.173:9000/sayHello";
+				new AsyncHttpPost().execute(url);
 				Intent intent = getIntent();
 				intent.setClass(getApplicationContext(), MainActivity.class);
 				startActivity(intent);
+
+				// Toast.makeText(getApplicationContext(),
+				// writeXml(chosen),Toast.LENGTH_LONG).show();
+
+				
+
 			}
 		});
 	} // end onCreate
-	
-	// Don't change the screen orientation 
-	public void onConfigurationChanged(Configuration newConfig){
+
+	// Don't change the screen orientation
+	public void onConfigurationChanged(Configuration newConfig) {
 		super.onConfigurationChanged(newConfig);
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 	}
-	
-	
+
 	/**
-	 * This method write the climate report of 
-	 * the user into a well-formed XML.
+	 * This method writes the climate report of the user into a well-formed XML.
 	 */
-	private String writeXml(List<String> report){
+	private String writeXml(List<String> report) {
 		XmlSerializer serializer = Xml.newSerializer();
 		StringWriter writer = new StringWriter();
-		try{
+		try {
 			serializer.setOutput(writer);
 			serializer.startDocument("UTF-8", true);
 			serializer.startTag("", "user-report");
 			serializer.attribute("", "user-id", ANDROID_ID);
-			for(String c : chosen){
+			for (String c : chosen) {
 				serializer.startTag("", "value");
 				serializer.text(c);
 				serializer.endTag("", "value");
@@ -128,16 +141,84 @@ public class Feedback extends Activity {
 			serializer.endTag("", "user-report");
 			serializer.endDocument();
 			return writer.toString();
-		}catch(Exception e){
+		} catch (Exception e) {
 			throw new RuntimeException();
 		}
 	}
-	
-	
-	
 
-	/*************************************************************************
-	 * == TO DO Implement the methods that will send the data over via TCP/IP.
-	 *************************************************************************/
+	// / Throws NetworkOnMainThreadException
+	// Use AsyncTask
+
+	public class AsyncHttpPost extends AsyncTask<String, String, String> {
+
+		/* (non-Javadoc)
+		 * @see android.os.AsyncTask#doInBackground(Params[])
+		 */
+		@Override
+		protected String doInBackground(String... params) {
+			byte[] result = null;
+			String str = "";
+
+			HttpClient httpclient = new DefaultHttpClient();
+			HttpPost httppost = new HttpPost(params[0]); // url
+
+			try {
+				String name = "Beriyo";
+				StringEntity entity = new StringEntity("name="+name, "UTF-8");
+				httppost.setEntity(entity);
+				httppost.addHeader("Content-Type", "application/x-www-form-urlencoded");   // This MIME type is FUCKING IMPORTANT. Spent few hours not knowing it.
+				HttpResponse response = httpclient.execute(httppost);
+				StatusLine statusLine = response.getStatusLine();
+				if (statusLine.getStatusCode() == HttpURLConnection.HTTP_OK) {
+					result = EntityUtils.toByteArray(response.getEntity());
+					str = new String(result, "UTF-8");
+				}
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+			return str;
+		}
+		
+		@Override
+		protected void onPostExecute(String result){
+			Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
+		}
+		
+		
+		
+
+		/*
+		 * 
+		 * private void uploadToWebServer() throws ClientProtocolException,
+		 * IOException { String link = "http://130.233.124.173:9000/sayHello";
+		 * 
+		 * HttpClient httpclient = new DefaultHttpClient(); HttpPost httppost =
+		 * new HttpPost(link);
+		 * 
+		 * try {
+		 * 
+		 * 
+		 * String xmlFile ="Beriyo"; //writeXml(chosen); StringEntity entity =
+		 * new StringEntity("name="+xmlFile, "UTF-8");
+		 * httppost.setEntity(entity); // httppost.addHeader("Accept",
+		 * "application/xml"); // httppost.addHeader("Content-Type",
+		 * "application/xml");
+		 * 
+		 * httppost.addHeader("Content-Type", "text/html");
+		 * 
+		 * HttpResponse response = httpclient.execute(httppost);
+		 * 
+		 * if (response.getStatusLine() != null) Toast.makeText(getParent(),
+		 * (CharSequence) response.getStatusLine(), Toast.LENGTH_SHORT).show();
+		 * //You can get response from calling response.getEntity() and
+		 * manipulate with it as you need. } catch (ClientProtocolException e) {
+		 * // TODO Auto-generated catch block e.printStackTrace(); } catch
+		 * (IOException e) { // TODO Auto-generated catch block
+		 * e.printStackTrace(); } }
+		 */
+
+	}
 
 }
