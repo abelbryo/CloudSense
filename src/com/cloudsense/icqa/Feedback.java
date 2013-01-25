@@ -20,7 +20,6 @@ import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.text.Editable;
 import android.text.Selection;
 import android.text.TextUtils;
@@ -41,8 +40,7 @@ public class Feedback extends Activity {
 	private Button[] buttonArray; // 8 buttons so far
 	private EditText editText;
 	private ArrayList<String> chosen;
-	private String ANDROID_ID = Settings.Secure.ANDROID_ID;
-
+	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.feedback);
@@ -121,13 +119,20 @@ public class Feedback extends Activity {
 	 * This method writes the climate report of the user into a well-formed XML.
 	 */
 	private String writeXml(List<String> report) {
+		Bundle extras = getIntent().getExtras();
+		String user_id = null;
+		if (extras != null){
+			user_id = extras.getString(LoginUsingFacebook.FACEBOOK_USER_ID);
+		}
+		
+		
 		XmlSerializer serializer = Xml.newSerializer();
 		StringWriter writer = new StringWriter();
 		try {
 			serializer.setOutput(writer);
 			serializer.startDocument("UTF-8", true);
 			serializer.startTag("", "user-report");
-			serializer.attribute("", "user-id", ANDROID_ID);
+			serializer.attribute("", "user-id", user_id);
 			for (String c : chosen) {
 				serializer.startTag("", "value");
 				serializer.text(c);
