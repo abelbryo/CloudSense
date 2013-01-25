@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
+
+
 public class ClimateParameter extends ListFragment {
 	OnClimateParamSelectedListener mCallback;
 	private CustomData[] mData = Data.getClimateParams();

@@ -3,6 +3,12 @@
 
     <string name="app_name">CloudSense</string>
     <string name="title">List of Parameters</string>
+    <string name="applicationId">310126352440918</string>
+    
+    
+    <!-- Login activity -->
+    <string name="login_button_name">Login using facebook</string>
+    
    
     
     <!-- feedback activity  -->

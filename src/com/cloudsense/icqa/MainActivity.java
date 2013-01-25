@@ -1,5 +1,6 @@
 package com.cloudsense.icqa;
 
+
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
@@ -18,10 +19,11 @@ public class MainActivity extends FragmentActivity implements
 				return;
 			}
 			ClimateParameter homeFragment = new ClimateParameter();
+			//homeFragment.setArguments(getIntent().getExtras());
+			
 			homeFragment.setArguments(getIntent().getExtras());
-
-			getSupportFragmentManager().beginTransaction()
-					.add(R.id.fragment_container, homeFragment).commit();
+						
+			getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, homeFragment).commit();
 		}
 
 	}
