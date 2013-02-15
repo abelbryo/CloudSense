@@ -1,6 +1,5 @@
 package com.cloudsense.icqa;
 
-
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
@@ -18,14 +17,12 @@ public class MainActivity extends FragmentActivity implements
 			if (savedInstanceState != null) {
 				return;
 			}
-			ClimateParameter homeFragment = new ClimateParameter();
-			//homeFragment.setArguments(getIntent().getExtras());
-			
-			homeFragment.setArguments(getIntent().getExtras());
-						
-			getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, homeFragment).commit();
-		}
 
+			ClimateParameter homeFragment = new ClimateParameter();
+			homeFragment.setArguments(getIntent().getExtras());
+			getSupportFragmentManager().beginTransaction()
+					.add(R.id.fragment_container, homeFragment).commit();
+		}
 	}
 
 	@Override
@@ -38,7 +35,7 @@ public class MainActivity extends FragmentActivity implements
 	@Override
 	public void onClimateParamSelected(int position) {
 		ClimateParamDescription desc = (ClimateParamDescription) getSupportFragmentManager()
-				.findFragmentById(R.id.climate_param_desc);
+				.findFragmentById(R.id.climateparamdescription_fragment);
 		if (desc != null) {
 			desc.updateDescriptionView(position);
 		} else {

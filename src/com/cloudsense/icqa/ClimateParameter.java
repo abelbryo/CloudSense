@@ -8,8 +8,6 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
-
-
 public class ClimateParameter extends ListFragment {
 	OnClimateParamSelectedListener mCallback;
 	private CustomData[] mData = Data.getClimateParams();
@@ -32,35 +30,49 @@ public class ClimateParameter extends ListFragment {
 
 	public void onStart() {
 		super.onStart();
+		// in two pane-mode highlight the selected climate parameter
+		if (getFragmentManager().findFragmentById(R.id.climateparamdescription_fragment) != null)
+			setActivateOnItemClick(true, getListView());
 	}
 
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);
-		try {
-			mCallback = (OnClimateParamSelectedListener) activity;
-		} catch (ClassCastException e) {
-			throw new ClassCastException(
-					"The parent activity should implement the interface");
+		if(!(activity instanceof OnClimateParamSelectedListener)){
+			throw new IllegalStateException("Host activity should implement the callback interface.");
 		}
+		mCallback = (OnClimateParamSelectedListener)activity;
 	}
 
 	public void onListItemClick(ListView l, View v, int position, long id) {
+		mCallback.onClimateParamSelected(position);
+		getListView().setItemChecked(position, true);
+		
+		// If the user clicks on the Map row
+		// Start a map activity
 		Intent intent = new Intent();
 		if (getRowName(position).equals(ParamEnum.MAP.getRowName())) {
-			// If the user clicks on the Map row
-			// Start a map activity
+			
 			Toast.makeText(getActivity(), "Loading map ...", Toast.LENGTH_SHORT)
 					.show();
 			intent.setClass(getActivity(), IndoorMap.class);
 			getActivity().startActivity(intent);
-		} else
-			mCallback.onClimateParamSelected(position);
-
-		getListView().setItemChecked(position, true);
+		}
 	}
 
 	public String getRowName(int position) {
 		return mData[position].getTitle();
 	}
+	
+	/**
+	 * For some reason this doesn't work.
+	 * @param activate
+	 * @param v
+	 */
+	public void setActivateOnItemClick(boolean activate, ListView v){
+		v.setChoiceMode(activate ? ListView.CHOICE_MODE_SINGLE : ListView.CHOICE_MODE_NONE);
+		v.setSelected(activate);
+	}
+	
+	
 
 }

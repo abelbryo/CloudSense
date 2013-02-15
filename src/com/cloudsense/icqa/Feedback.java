@@ -164,7 +164,7 @@ public class Feedback extends Activity {
 				// httppost.setEntity(entity);
 				// httppost.addHeader("Content-Type",
 				// "application/x-www-form-urlencoded"); // This MIME type is
-				// FUCKING IMPORTANT for forms. Spent few hours not knowing it.
+				// VERY IMPORTANT for forms. Spent few hours not knowing it.
 
 				String xml = writeXml(chosen);
 				StringEntity entity = new StringEntity(xml, "UTF-8");
