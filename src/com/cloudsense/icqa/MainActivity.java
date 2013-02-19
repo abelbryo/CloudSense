@@ -49,7 +49,5 @@ public class MainActivity extends FragmentActivity implements
 			trans.addToBackStack(null);
 			trans.commit();
 		}
-
 	}
-
 }

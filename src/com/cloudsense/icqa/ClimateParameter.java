@@ -47,6 +47,8 @@ public class ClimateParameter extends ListFragment {
 		mCallback.onClimateParamSelected(position);
 		getListView().setItemChecked(position, true);
 		
+		
+		
 		// If the user clicks on the Map row
 		// Start a map activity
 		Intent intent = new Intent();
@@ -73,6 +75,4 @@ public class ClimateParameter extends ListFragment {
 		v.setSelected(activate);
 	}
 	
-	
-
 }
