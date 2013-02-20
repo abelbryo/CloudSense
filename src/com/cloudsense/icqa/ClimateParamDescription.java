@@ -7,7 +7,6 @@ import org.achartengine.model.XYSeries;
 import org.achartengine.renderer.XYMultipleSeriesRenderer;
 import org.achartengine.renderer.XYSeriesRenderer;
 
-import android.app.ActionBar.LayoutParams;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -68,7 +67,13 @@ public class ClimateParamDescription extends Fragment {
 		outState.putInt(ARG_POSITION, mCurrent);
 	}
 
-	// / TESTING
+	/***********************************************
+	 *  
+	 *  !! === TESTING IF THE GRAPH WORKS === !! 
+	 *  
+	 ***********************************************/ 
+	
+	
 
 	private GraphicalView mChartView;
 

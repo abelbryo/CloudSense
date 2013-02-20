@@ -13,8 +13,10 @@
         android:layout_height="wrap_content"
         android:padding="16dp"
         android:textColor="#FF5B00"
-        android:textSize="30sp"
-        android:text="Hello World" />
+        android:textSize="24sp"
+        android:text="@string/start_text"
+        android:fontFamily="Arial"
+         />
 
     <LinearLayout
         android:id="@+id/chart"
