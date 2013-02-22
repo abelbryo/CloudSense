@@ -18,16 +18,26 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.Selection;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.text.style.ClickableSpan;
+import android.text.style.ImageSpan;
+import android.util.Log;
 import android.util.Xml;
 import android.view.View;
+import android.view.View.MeasureSpec;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class Feedback extends Activity {
@@ -39,8 +49,8 @@ public class Feedback extends Activity {
 
 	private Button[] buttonArray; // 8 buttons so far
 	private EditText editText;
-	private ArrayList<String> chosen;
-	
+	private ArrayList<String> chosen; // Array for holding the choices
+
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.feedback);
@@ -59,14 +69,20 @@ public class Feedback extends Activity {
 		buttonArray[7] = (Button) findViewById(R.id.button8);
 
 		chosen = new ArrayList<String>();
+		
 
 		for (final Button btn : buttonArray) {
 			btn.setOnClickListener(new View.OnClickListener() {
 				public void onClick(View v) {
 					chosen.add((String) btn.getText());
-					editText.setText(TextUtils.join("-", chosen));
+					//editText.setText(TextUtils.join("-", chosen));				
+					String [] array = new String[chosen.size()];
+					array = chosen.toArray(array);
+					SpannableStringBuilder ssb = createTextTokenizer(array);
+					editText.setText(ssb);
 					Selection.setSelection(editText.getText(), editText
-							.getText().length()); // set cursor at the end
+								.getText().length()); // set cursor at the end
+					
 					btn.setEnabled(false);
 				}
 			});
@@ -121,11 +137,10 @@ public class Feedback extends Activity {
 	private String writeXml(List<String> report) {
 		Bundle extras = getIntent().getExtras();
 		String user_id = null;
-		if (extras != null){
+		if (extras != null) {
 			user_id = extras.getString(LoginUsingFacebook.FACEBOOK_USER_ID);
 		}
-		
-		
+
 		XmlSerializer serializer = Xml.newSerializer();
 		StringWriter writer = new StringWriter();
 		try {
@@ -191,4 +206,90 @@ public class Feedback extends Activity {
 					.show();
 		}
 	}
-}
+
+	
+	
+	// =================================================================
+	// Experimental UI
+	// Creating bubbles a.k.a Text tokenizer for the user feedback UI
+	// The clickableSpan event handler doesn't work for now.
+	// =================================================================
+
+	/**
+	 * Returns a textView with the passed String argument
+	 * @param text
+	 * @return
+	 */
+	public TextView createTextView(String text) {
+		TextView tv = new TextView(this);
+		tv.setText(text);
+		tv.setTextSize(20);
+		tv.setBackgroundResource(R.drawable.bubble);
+		return tv;
+	}
+	
+	/**
+	 * Converts a TextView into Bitmap
+	 * @param view
+	 * @return
+	 */
+	public  Object convertViewToDrawable(View view){
+		int spec = MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED);
+		view.measure(spec, spec);
+		view.layout(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight());
+		Bitmap b = Bitmap.createBitmap(view.getMeasuredWidth(), view.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
+		Canvas c = new Canvas(b);
+		c.translate(-view.getScrollX(), -view.getScrollY());
+		view.draw(c);
+		view.setDrawingCacheEnabled(true);
+		Bitmap cacheBmp = view.getDrawingCache();
+		Bitmap viewBmp = cacheBmp.copy(Bitmap.Config.ARGB_8888, true);
+		view.destroyDrawingCache();
+		
+		return new BitmapDrawable(this.getResources(), viewBmp);
+	}
+	
+	/**
+	 * It puts together a textview and a bitmap and returns 
+	 * a bunch of bitmaps as a SpannableStringBuilder object
+	 * which can be added to an EditText by simply using setText.
+	 * @param args
+	 * @return
+	 */
+	public SpannableStringBuilder createTextTokenizer(String ...args){
+		SpannableStringBuilder ssb = new SpannableStringBuilder();
+		
+		for(String msg : args){
+			TextView tv = createTextView(msg);
+			BitmapDrawable bd = (BitmapDrawable) convertViewToDrawable(tv);
+			bd.setBounds(0, 0, bd.getIntrinsicWidth(), bd.getIntrinsicHeight());
+			ssb.append(msg+",");
+			
+			ImageSpan imageSpan = new ImageSpan(bd);
+			
+			int start = ssb.length() - (msg.length() + 1);
+			int end = ssb.length() - 1;
+			
+			ssb.setSpan(imageSpan, start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+			ssb.setSpan(new ClickableSpan() {
+				
+				@Override
+				public void onClick(View widget) {
+					Log.v("SSB_CLICKED","Bubble Clicked");					
+				}
+			}, start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+			
+		}
+		return ssb;
+	}
+	
+
+} // end Class
+
+
+
+
+
+
+
+
