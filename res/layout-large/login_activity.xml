@@ -7,12 +7,14 @@
 
     <Button
             android:id="@+id/buttonLoginFragment"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/login_button_name"
             android:background="@drawable/button_red"
             style="@style/button_text"
             android:layout_gravity="center"
+            android:paddingLeft="100dp"
+            android:paddingRight="100dp"
              />
 
 </LinearLayout>

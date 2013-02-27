@@ -44,10 +44,6 @@ public class ClimateParameter extends ListFragment {
 	}
 
 	public void onListItemClick(ListView l, View v, int position, long id) {
-		mCallback.onClimateParamSelected(position);
-		getListView().setItemChecked(position, true);
-		
-		
 		
 		// If the user clicks on the Map row
 		// Start a map activity
@@ -59,6 +55,12 @@ public class ClimateParameter extends ListFragment {
 			intent.setClass(getActivity(), IndoorMap.class);
 			getActivity().startActivity(intent);
 		}
+		
+		// if clicked on other rows
+		// just show corresponding view of the fragment
+		mCallback.onClimateParamSelected(position);
+		getListView().setItemChecked(position, true);
+		
 	}
 
 	public String getRowName(int position) {

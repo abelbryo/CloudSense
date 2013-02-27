@@ -27,7 +27,6 @@ import android.text.Editable;
 import android.text.Selection;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
-import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.style.ClickableSpan;
 import android.text.style.ImageSpan;
@@ -225,6 +224,7 @@ public class Feedback extends Activity {
 		tv.setText(text);
 		tv.setTextSize(20);
 		tv.setBackgroundResource(R.drawable.bubble);
+		// tv.setCompoundDrawablesWithIntrinsicBounds(0,  0, android.R.drawable.ic_delete, 0);
 		return tv;
 	}
 	
@@ -250,7 +250,7 @@ public class Feedback extends Activity {
 	}
 	
 	/**
-	 * It puts together a textview and a bitmap and returns 
+	 * It puts together a TextView and a bitmap and returns 
 	 * a bunch of bitmaps as a SpannableStringBuilder object
 	 * which can be added to an EditText by simply using setText.
 	 * @param args
@@ -259,11 +259,12 @@ public class Feedback extends Activity {
 	public SpannableStringBuilder createTextTokenizer(String ...args){
 		SpannableStringBuilder ssb = new SpannableStringBuilder();
 		
+		
 		for(String msg : args){
 			TextView tv = createTextView(msg);
 			BitmapDrawable bd = (BitmapDrawable) convertViewToDrawable(tv);
 			bd.setBounds(0, 0, bd.getIntrinsicWidth(), bd.getIntrinsicHeight());
-			ssb.append(msg+",");
+			ssb.append(msg+" ");
 			
 			ImageSpan imageSpan = new ImageSpan(bd);
 			

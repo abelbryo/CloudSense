@@ -18,7 +18,7 @@
     <!-- feedback activity  -->
     <string name="feedback_title">How do you feel about the climate quality in the room?</string>
     <string name="submit_button">Submit</string>
-    <string name="feedback_hint">Pick adjectives from below OR Type it yourself. </string>
+    <string name="feedback_hint">Pick adjectives from below. </string>
     
     <string name="button1">Heavy</string>
     <string name="button2">Hot</string>
