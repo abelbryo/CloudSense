@@ -54,13 +54,13 @@ public class ClimateParameter extends ListFragment {
 					.show();
 			intent.setClass(getActivity(), IndoorMap.class);
 			getActivity().startActivity(intent);
+		}else{
+		
+			// if clicked on other rows
+			// just show corresponding view of the fragment
+			mCallback.onClimateParamSelected(position);
+			getListView().setItemChecked(position, true);
 		}
-		
-		// if clicked on other rows
-		// just show corresponding view of the fragment
-		mCallback.onClimateParamSelected(position);
-		getListView().setItemChecked(position, true);
-		
 	}
 
 	public String getRowName(int position) {
