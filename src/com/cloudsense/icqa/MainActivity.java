@@ -37,6 +37,7 @@ public class MainActivity extends FragmentActivity implements
 		ClimateParamDescription desc = (ClimateParamDescription) getSupportFragmentManager()
 				.findFragmentById(R.id.climateparamdescription_fragment);
 		if (desc != null) {
+			// if in two-pane layout
 			desc.updateDescriptionView(position);
 		} else {
 			ClimateParamDescription newDesc = new ClimateParamDescription();

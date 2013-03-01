@@ -8,13 +8,15 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.cloudsense.icqa.chart.HumidityChart;
+import com.cloudsense.icqa.chart.MotherChart;
 import com.cloudsense.icqa.chart.TemperatureChart;
 
 public class ClimateParamDescription extends Fragment {
 	public final static String ARG_POSITION = "loc";
 	private int mCurrent = -1;
-	LinearLayout layout;
-	
+
+	// LinearLayout layout;
 
 	/* This is the point where the fragment will be shown on screen. */
 	public View onCreateView(LayoutInflater inflater, ViewGroup parent,
@@ -28,8 +30,6 @@ public class ClimateParamDescription extends Fragment {
 
 	public void onStart() {
 		super.onStart();
-		layout = (LinearLayout) getActivity().findViewById(
-				R.id.chart);
 		Bundle args = getArguments();
 		if (args != null) {
 			updateDescriptionView(args.getInt(ARG_POSITION));
@@ -40,10 +40,7 @@ public class ClimateParamDescription extends Fragment {
 
 	public void onResume() {
 		super.onResume();
-		if(layout == null){
-			layout = (LinearLayout) getActivity().findViewById(
-					R.id.chart);
-		}
+
 		Bundle args = getArguments();
 		if (args != null) {
 			updateDescriptionView(args.getInt(ARG_POSITION));
@@ -53,14 +50,36 @@ public class ClimateParamDescription extends Fragment {
 	}
 
 	public void updateDescriptionView(int position) {
-		TextView desc = (TextView) getActivity().findViewById(
+		TextView descTitle = (TextView) getActivity().findViewById(
 				R.id.climate_param_desc);
+
+		LinearLayout layout = (LinearLayout) getActivity().findViewById(
+				R.id.chart);
+
+		TextView view = null;
+		layout.removeAllViews();
+		MotherChart mc;
 		if (Data.getValue(position).equals(ParamEnum.TEMPERATURE.getRowName())) {
-			TemperatureChart tc = new TemperatureChart();
-			tc.draw(getActivity(), layout);
+			mc = new TemperatureChart(layout);
+			mc.draw(getActivity());
+		} else if (Data.getValue(position).equals(
+				ParamEnum.HUMIDITY.getRowName())) {
+			mc = new HumidityChart(layout);
+			mc.draw(getActivity());
+		} else if (Data.getValue(position).equals(
+				ParamEnum.LUMINANCE.getRowName())) {
+			view = new TextView(getActivity());
+			view.setText("Coming soon...!");
+			view.setTextSize(66);
+			layout.addView(view);
+		}else if (Data.getValue(position).equals(ParamEnum.CO2.getRowName())){
+			view = new TextView(getActivity());
+			view.setText("Coming soon...!");
+			view.setTextSize(66);
+			layout.addView(view);
 		}
 
-		desc.setText(Data.getValue(position));
+		descTitle.setText(Data.getValue(position));
 		mCurrent = position;
 	}
 

@@ -5,8 +5,7 @@ package com.cloudsense.icqa;
  */
 
 public enum ParamEnum {
-	CO2("Carbondioxide", 0), TEMPERATURE("Temperature", 1), HUMIDITY("Humidity", 2), INDOOR_PRESSURE(
-			"Indoor Pressure", 3), LUMINANCE("Luminance", 4), MAP("Map", 5);
+	CO2("Carbondioxide", 0), TEMPERATURE("Temperature", 1), HUMIDITY("Humidity", 2), LUMINANCE("Luminance", 3), MAP("Map", 4);
 
 	private final String rowName;
 	private final int position;

@@ -9,34 +9,33 @@ import org.achartengine.model.TimeSeries;
 import org.achartengine.model.XYMultipleSeriesDataset;
 import org.achartengine.renderer.XYMultipleSeriesRenderer;
 import org.achartengine.renderer.XYSeriesRenderer;
-import org.achartengine.tools.PanListener;
 
 import android.content.Context;
 import android.graphics.Color;
 import android.view.ViewGroup;
 
-public class TemperatureChart extends MotherChart{
+public class HumidityChart extends MotherChart {
 
 	private GraphicalView mChartView;
 
-	private XYMultipleSeriesDataset mDataset = new XYMultipleSeriesDataset();
+	XYMultipleSeriesDataset mDataset = new XYMultipleSeriesDataset();
 
-	private XYMultipleSeriesRenderer mRenderer = new XYMultipleSeriesRenderer();
+	XYMultipleSeriesRenderer mRenderer = new XYMultipleSeriesRenderer();
 
-	private TimeSeries mCurrentSeries;
+	TimeSeries mCurrentSeries;
 
-	private XYSeriesRenderer mCurrentRenderer;
-
-	private ViewGroup layout; 
+	XYSeriesRenderer mCurrentRenderer;
 	
-	public TemperatureChart (ViewGroup layout){
-		super(); 
+	private ViewGroup layout;
+	
+	public HumidityChart(ViewGroup layout){
+		super();
 		this.layout = layout;
 	}
-	
+
 		
 	public void initChart() {
-		mCurrentSeries = new TimeSeries("TUAS Temprature Data");
+		mCurrentSeries = new TimeSeries("TUAS Humidity Data");
 		mDataset.addSeries(mCurrentSeries);
 		mCurrentRenderer = new XYSeriesRenderer();
 		mRenderer.addSeriesRenderer(mCurrentRenderer);
@@ -61,11 +60,11 @@ public class TemperatureChart extends MotherChart{
 
 			mCurrentRenderer.setLineWidth(3.0f);
 
-			mCurrentSeries.add(date1, 23.5);
-			mCurrentSeries.add(date2, 20);
-			mCurrentSeries.add(date3, 18);
-			mCurrentSeries.add(date4, 22);
-			mCurrentSeries.add(date5, 25);
+			mCurrentSeries.add(date1, 50);
+			mCurrentSeries.add(date2, 44);
+			mCurrentSeries.add(date3, 61.5);
+			mCurrentSeries.add(date4, 39);
+			mCurrentSeries.add(date5, 40);
 
 		} catch (Exception e) {
 		}
@@ -87,16 +86,14 @@ public class TemperatureChart extends MotherChart{
 
 			mChartView = ChartFactory.getTimeChartView(context, mDataset,
 					mRenderer, "EEE MMM dd HH:mm yyyy");
-			mChartView.addPanListener(new PanListener() {
-				
-				@Override
-				public void panApplied() {
-					mChartView.zoomIn();					
-				}
-			});
 			layout.addView(mChartView);
 		} else {
 			mChartView.repaint();
 		}
 	}
+	
+	
+	
+
+
 }

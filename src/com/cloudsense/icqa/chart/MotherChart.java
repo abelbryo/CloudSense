@@ -1,7 +1,6 @@
 package com.cloudsense.icqa.chart;
 
 import android.content.Context;
-import android.view.ViewGroup;
 
 /**
  * All chart types inherit from the {@code MotherChart} class.
@@ -19,5 +18,7 @@ public abstract class MotherChart {
 	 * @param layout The layout to draw the chart on. Typically, a LinearLayout.
 	 * 
 	 */
-	public abstract void draw(Context context, ViewGroup layout);
+	public abstract void draw(Context context);
+	
+
 }

@@ -57,7 +57,7 @@ public class ClimateParameter extends ListFragment {
 		}else{
 		
 			// if clicked on other rows
-			// just show corresponding view of the fragment
+			// show corresponding view of the fragment
 			mCallback.onClimateParamSelected(position);
 			getListView().setItemChecked(position, true);
 		}

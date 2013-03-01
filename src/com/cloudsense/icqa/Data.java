@@ -20,15 +20,11 @@ public class Data {
 				 * ParamEnum.INDOOR_PRESSURE.getRowName()),
 				 */
 
-				new CustomData(R.drawable.temp,
-						ParamEnum.TEMPERATURE.getRowName()),
-				new CustomData(R.drawable.humid,
-						ParamEnum.HUMIDITY.getRowName()),
-				new CustomData(R.drawable.lumin,
-						ParamEnum.LUMINANCE.getRowName()),
-
-				new CustomData(R.drawable.co2, ParamEnum.CO2.getRowName()),
-				new CustomData(R.drawable.map, ParamEnum.MAP.getRowName()), };
+				new CustomData(R.drawable.temp,	 ParamEnum.TEMPERATURE.getRowName()),
+				new CustomData(R.drawable.humid, ParamEnum.HUMIDITY.getRowName()),
+				new CustomData(R.drawable.lumin, ParamEnum.LUMINANCE.getRowName()),
+				new CustomData(R.drawable.co2,   ParamEnum.CO2.getRowName()),
+				new CustomData(R.drawable.map,   ParamEnum.MAP.getRowName()), };
 
 	};
 }
