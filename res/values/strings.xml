@@ -20,14 +20,29 @@
     <string name="submit_button">Submit</string>
     <string name="feedback_hint">Pick adjectives from below. </string>
     
-    <string name="button1">Heavy</string>
-    <string name="button2">Hot</string>
+    
+    <string name="button2">OK</string>
     <string name="button3">Cold</string>
-    <string name="button4">Light</string>
-    <string name="button5">Easy</string>
-    <string name="button6">Bright</string>
-    <string name="button7">Dark</string>
-    <string name="button8">Great</string>
+    <string name="button9">Warm</string>
+    
+    <string name="button1">Bright</string>
+    <string name="button4">Dark</string>
+    
+    <string name="button5">Fresh</string>
+    <string name="button6">Smelly</string>
+    <string name="button10">Fluffy</string>
+    
+    <string name="button7">Cozy</string>
+    <string name="button8">Annoyed</string>
+    <string name="button11">Cheerless</string>
+    
+    <string name="temprature">Temperature</string>
+    <string name="luminance">Luminance</string>
+    <string name="air_quality">Air Quality</string>
+    <string name="space">Space</string>
+    
+    
+    
     
     <!-- indoor map  -->
      <string name="transparency">Transparency</string>

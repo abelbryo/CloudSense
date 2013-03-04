@@ -1,141 +1,294 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ScrollView01"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fillViewport="true"
+     >
 
-    <EditText
-        android:id="@+id/feedback_edit_text"
+    <HorizontalScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/feedback_title"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="26dp"
-        android:ems="22"
-        android:hint="@string/feedback_hint"
-        android:inputType="textMultiLine"
-        android:maxLines="5"
-        android:minLines="3"
-        android:singleLine="false" >
+        android:layout_gravity="center_horizontal"
+        android:fillViewport="true"
+         >
 
-        <requestFocus android:background="#ccc" />
-    </EditText>
+        <RelativeLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res/com.cloudsense.icqa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="20dp"
+             >
 
-    <TextView
-        android:id="@+id/feedback_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:gravity="center_vertical|center"
-        android:text="@string/feedback_title"
-        style="@style/feedback_title_text"
-         />
+            <EditText
+                android:id="@+id/feedback_edit_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/feedback_title"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="26dp"
+                android:ems="22"
+                android:hint="@string/feedback_hint"
+                android:inputType="textMultiLine"
+                android:maxLines="5"
+                android:minLines="3"
+                android:singleLine="false" >
 
-    <Button
-        android:id="@+id/feedback_button"
-        style="@style/button_text_small"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/choice_grid"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/button_green"
-        android:text="@string/submit_button" />
+                <requestFocus android:background="#ccc" />
+            </EditText>
 
-    
-    <!-- GridLayout plumbing
+            <TextView
+                android:id="@+id/feedback_title"
+                style="@style/feedback_title_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:gravity="center_vertical|center"
+                android:text="@string/feedback_title" />
+
+            <Button
+                android:id="@+id/feedback_button"
+                style="@style/button_text_small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/choice_grid"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/button_green"
+                android:text="@string/submit_button" />
+
+            <!--
+         GridLayout plumbing
     	Normally GridLayout doesn't work for Older Android Phones
     	therefore, I had to use the support library for backward 
     	compatibility. Here is more info on that
     	http://code.google.com/p/android-playground/source/browse/trunk/GridLayoutCompatSample/res/layout/grid_layout_1.xml 
-     -->
-    
-    <android.support.v7.widget.GridLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:grid="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/choice_grid"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/feedback_edit_text"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="50dp"
-        android:layout_centerHorizontal="true"
-               
-        grid:alignmentMode="alignBounds"
-        grid:columnCount="4"
-        grid:rowCount="2"
-        grid:rowOrderPreserved="false"
-        grid:useDefaultMargins="true"
-     >
+            -->
 
-        <!-- ======================================= -->
-        <!-- ============ Choice Buttons =========== -->
-        <!-- ======================================= -->
+            <android.support.v7.widget.GridLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:grid="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/choice_grid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/feedback_edit_text"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="50dp"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/grid_background"
+                android:padding="10dp"
+                grid:alignmentMode="alignBounds"
+                grid:columnCount="2"
+                grid:rowCount="2"
+                grid:rowOrderPreserved="false"
+                grid:useDefaultMargins="true" >
 
-        <Button
-            android:id="@+id/button2"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/button2"
-            android:background="@drawable/button_choice"/>
+                <!-- ======================================= -->
+                <!-- ============ Temperature =========== -->
+                <!-- ======================================= -->
 
-        <Button
-            android:id="@+id/button3"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/button3"
-            android:background="@drawable/button_choice" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
 
-        <Button
-            android:id="@+id/button1"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/button1"
-            android:background="@drawable/button_choice" />
+                    <Button
+                        android:id="@+id/temperature"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/temprature" />
 
-        <Button
-            android:id="@+id/button4"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/button4"
-            android:background="@drawable/button_choice" />
+                    <android.support.v7.widget.GridLayout
+                        xmlns:grid="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/grid_background"
+                        android:padding="10dp"
+                        grid:alignmentMode="alignBounds"
+                        grid:columnCount="2"
+                        grid:rowCount="2"
+                        grid:rowOrderPreserved="false"
+                        grid:useDefaultMargins="true" >
 
-        <Button
-            android:id="@+id/button5"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/button5"
-            android:background="@drawable/button_choice" />
+                        <Button
+                            android:id="@+id/button2"
+                            style="?android:attr/buttonStyleSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/button_choice"
+                            android:text="@string/button2" />
 
-        <Button
-            android:id="@+id/button6"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/button6"
-            android:background="@drawable/button_choice" />
+                        <Button
+                            android:id="@+id/button3"
+                            style="?android:attr/buttonStyleSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/button_choice"
+                            android:text="@string/button3" />
 
-        <Button
-            android:id="@+id/button7"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/button7"
-            android:background="@drawable/button_choice" />
+                        <Button
+                            android:id="@+id/button9"
+                            style="?android:attr/buttonStyleSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/button_choice"
+                            android:text="@string/button9" />
+                    </android.support.v7.widget.GridLayout>
+                </LinearLayout>
 
-        <Button
-            android:id="@+id/button8"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/button8"
-            android:background="@drawable/button_choice" />
-    </android.support.v7.widget.GridLayout>
+                <!-- ================================================= -->
+                <!-- ============ Luminance - Bright, dark =========== -->
+                <!-- ================================================= -->
 
-</RelativeLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+                    <Button
+                        android:id="@+id/luminance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/luminance" />
+
+                    <android.support.v7.widget.GridLayout
+                        xmlns:grid="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/grid_background"
+                        android:padding="10dp"
+                        grid:alignmentMode="alignBounds"
+                        grid:columnCount="1"
+                        grid:rowCount="2"
+                        grid:rowOrderPreserved="false"
+                        grid:useDefaultMargins="true" >
+
+                        <Button
+                            android:id="@+id/button1"
+                            style="?android:attr/buttonStyleSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/button_choice"
+                            android:text="@string/button1" />
+
+                        <Button
+                            android:id="@+id/button4"
+                            style="?android:attr/buttonStyleSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/button_choice"
+                            android:text="@string/button4" />
+                    </android.support.v7.widget.GridLayout>
+                </LinearLayout>
+                <!-- ======================================================= -->
+                <!-- ============ Air Quality - Fresh, Stale etc =========== -->
+                <!-- ======================================================= -->
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+                    <Button
+                        android:id="@+id/air_quality"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/air_quality" />
+
+                    <android.support.v7.widget.GridLayout
+                        xmlns:grid="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/grid_background"
+                        android:padding="10dp"
+                        grid:alignmentMode="alignBounds"
+                        grid:columnCount="2"
+                        grid:rowCount="2"
+                        grid:rowOrderPreserved="false"
+                        grid:useDefaultMargins="true" >
+
+                        <Button
+                            android:id="@+id/button5"
+                            style="?android:attr/buttonStyleSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/button_choice"
+                            android:text="@string/button5" />
+
+                        <Button
+                            android:id="@+id/button6"
+                            style="?android:attr/buttonStyleSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/button_choice"
+                            android:text="@string/button6" />
+
+                        <Button
+                            android:id="@+id/button10"
+                            style="?android:attr/buttonStyleSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/button_choice"
+                            android:text="@string/button10" />
+                    </android.support.v7.widget.GridLayout>
+                </LinearLayout>
+                <!-- ============================================================ -->
+                <!-- ============ Environment - Comfy, Cheerless etc  =========== -->
+                <!-- ============================================================ -->
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+                    <Button
+                        android:id="@+id/space"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/space" />
+
+                    <android.support.v7.widget.GridLayout
+                        xmlns:grid="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/grid_background"
+                        android:padding="10dp"
+                        grid:alignmentMode="alignBounds"
+                        grid:columnCount="2"
+                        grid:rowCount="2"
+                        grid:rowOrderPreserved="false"
+                        grid:useDefaultMargins="true" >
+
+                        <Button
+                            android:id="@+id/button7"
+                            style="?android:attr/buttonStyleSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/button_choice"
+                            android:text="@string/button7" />
+
+                        <Button
+                            android:id="@+id/button8"
+                            style="?android:attr/buttonStyleSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/button_choice"
+                            android:text="@string/button8" />
+
+                        <Button
+                            android:id="@+id/button11"
+                            style="?android:attr/buttonStyleSmall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/button_choice"
+                            android:text="@string/button11" />
+                    </android.support.v7.widget.GridLayout>
+                </LinearLayout>
+            </android.support.v7.widget.GridLayout>
+        </RelativeLayout>
+    </HorizontalScrollView>
+
+</ScrollView>

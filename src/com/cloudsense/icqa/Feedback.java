@@ -43,7 +43,7 @@ public class Feedback extends Activity {
 
 	private Button feedbackSubmit;
 
-	private static final int CHOICE_BUTTON_NO = 8;
+	private static final int CHOICE_BUTTON_NO = 11;
 	private static final String SERVER_URL = "http://130.233.124.173:9000/xmlPost";
 
 	private Button[] buttonArray; // 8 buttons so far
@@ -66,6 +66,9 @@ public class Feedback extends Activity {
 		buttonArray[5] = (Button) findViewById(R.id.button6);
 		buttonArray[6] = (Button) findViewById(R.id.button7);
 		buttonArray[7] = (Button) findViewById(R.id.button8);
+		buttonArray[8] = (Button) findViewById(R.id.button9);
+		buttonArray[9] = (Button) findViewById(R.id.button10);
+		buttonArray[10] = (Button) findViewById(R.id.button11);
 
 		chosen = new ArrayList<String>();
 		
