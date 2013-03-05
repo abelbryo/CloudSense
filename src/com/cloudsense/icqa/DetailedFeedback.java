@@ -15,7 +15,6 @@ import org.apache.http.util.EntityUtils;
 import org.xmlpull.v1.XmlSerializer;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
@@ -35,13 +34,12 @@ import android.util.Log;
 import android.util.Xml;
 import android.view.View;
 import android.view.View.MeasureSpec;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class Feedback extends Activity {
+public class DetailedFeedback extends Activity {
 
 	private Button feedbackSubmit;
 
