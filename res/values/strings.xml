@@ -41,7 +41,8 @@
     <string name="air_quality">Air Quality</string>
     <string name="space">Space</string>
     
-    
+    <!-- Simple feedback Title -->
+    <string name="simple_feedback_title">How do you feel about the indoor climate?</string>
     
     
     <!-- indoor map  -->
