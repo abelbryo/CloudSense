@@ -14,7 +14,6 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 import org.xmlpull.v1.XmlSerializer;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
@@ -23,6 +22,7 @@ import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.app.Fragment;
 import android.text.Editable;
 import android.text.Selection;
 import android.text.Spannable;
@@ -32,14 +32,16 @@ import android.text.style.ClickableSpan;
 import android.text.style.ImageSpan;
 import android.util.Log;
 import android.util.Xml;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.MeasureSpec;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class DetailedFeedback extends Activity {
+public class DetailedFeedbackFragment extends Fragment {
 
 	private Button feedbackSubmit;
 
@@ -50,41 +52,53 @@ public class DetailedFeedback extends Activity {
 	private EditText editText;
 	private ArrayList<String> chosen; // Array for holding the choices
 
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		if (container == null)
+			return null;
+		return inflater.inflate(R.layout.detailed_feedback, container, false);
+	}
+
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.feedback);
-		feedbackSubmit = (Button) findViewById(R.id.feedback_button);
-		editText = (EditText) findViewById(R.id.feedback_edit_text);
-			
+
+	} // end onCreate
+
+	public void onStart() {
+		super.onStart();
+		feedbackSubmit = (Button) getActivity().findViewById(
+				R.id.feedback_button);
+		editText = (EditText) getActivity().findViewById(
+				R.id.feedback_edit_text);
+
 		buttonArray = new Button[CHOICE_BUTTON_NO];
 
-		buttonArray[0] = (Button) findViewById(R.id.button1);
-		buttonArray[1] = (Button) findViewById(R.id.button2);
-		buttonArray[2] = (Button) findViewById(R.id.button3);
-		buttonArray[3] = (Button) findViewById(R.id.button4);
-		buttonArray[4] = (Button) findViewById(R.id.button5);
-		buttonArray[5] = (Button) findViewById(R.id.button6);
-		buttonArray[6] = (Button) findViewById(R.id.button7);
-		buttonArray[7] = (Button) findViewById(R.id.button8);
-		buttonArray[8] = (Button) findViewById(R.id.button9);
-		buttonArray[9] = (Button) findViewById(R.id.button10);
-		buttonArray[10] = (Button) findViewById(R.id.button11);
+		buttonArray[0] = (Button) getActivity().findViewById(R.id.button1);
+		buttonArray[1] = (Button) getActivity().findViewById(R.id.button2);
+		buttonArray[2] = (Button) getActivity().findViewById(R.id.button3);
+		buttonArray[3] = (Button) getActivity().findViewById(R.id.button4);
+		buttonArray[4] = (Button) getActivity().findViewById(R.id.button5);
+		buttonArray[5] = (Button) getActivity().findViewById(R.id.button6);
+		buttonArray[6] = (Button) getActivity().findViewById(R.id.button7);
+		buttonArray[7] = (Button) getActivity().findViewById(R.id.button8);
+		buttonArray[8] = (Button) getActivity().findViewById(R.id.button9);
+		buttonArray[9] = (Button) getActivity().findViewById(R.id.button10);
+		buttonArray[10] = (Button) getActivity().findViewById(R.id.button11);
 
 		chosen = new ArrayList<String>();
-		
 
 		for (final Button btn : buttonArray) {
 			btn.setOnClickListener(new View.OnClickListener() {
 				public void onClick(View v) {
 					chosen.add((String) btn.getText());
-					//editText.setText(TextUtils.join("-", chosen));				
-					String [] array = new String[chosen.size()];
+					// editText.setText(TextUtils.join("-", chosen));
+					String[] array = new String[chosen.size()];
 					array = chosen.toArray(array);
 					SpannableStringBuilder ssb = createTextTokenizer(array);
 					editText.setText(ssb);
 					Selection.setSelection(editText.getText(), editText
-								.getText().length()); // set cursor at the end
-					
+							.getText().length()); // set cursor at the end
+
 					btn.setEnabled(false);
 				}
 			});
@@ -120,24 +134,25 @@ public class DetailedFeedback extends Activity {
 			public void onClick(View v) {
 
 				new AsyncHttpPost().execute(SERVER_URL);
-				Intent intent = getIntent();
-				intent.setClass(getApplicationContext(), MainActivity.class);
+				Intent intent = getActivity().getIntent();
+				intent.setClass(getActivity(), MainActivity.class);
 				startActivity(intent);
 			}
 		});
-	} // end onCreate
+	}
 
 	// Don't change the screen orientation
 	public void onConfigurationChanged(Configuration newConfig) {
 		super.onConfigurationChanged(newConfig);
-		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+		getActivity().setRequestedOrientation(
+				ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 	}
 
 	/**
 	 * This method writes the climate report of the user into a well-formed XML.
 	 */
 	private String writeXml(List<String> report) {
-		Bundle extras = getIntent().getExtras();
+		Bundle extras = getActivity().getIntent().getExtras();
 		String user_id = null;
 		if (extras != null) {
 			user_id = extras.getString(LoginUsingFacebook.FACEBOOK_USER_ID);
@@ -204,13 +219,11 @@ public class DetailedFeedback extends Activity {
 
 		@Override
 		protected void onPostExecute(String result) {
-			Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG)
-					.show();
+			//Toast.makeText( getActivity, result, Toast.LENGTH_LONG).show();
+			Log.v("DetailedFeedbackFragment - AsyncPost", result);
 		}
 	}
 
-	
-	
 	// =================================================================
 	// Experimental UI
 	// Creating bubbles a.k.a Text tokenizer for the user feedback UI
@@ -219,28 +232,32 @@ public class DetailedFeedback extends Activity {
 
 	/**
 	 * Returns a textView with the passed String argument
+	 * 
 	 * @param text
 	 * @return
 	 */
 	public TextView createTextView(String text) {
-		TextView tv = new TextView(this);
+		TextView tv = new TextView(getActivity());
 		tv.setText(text);
 		tv.setTextSize(20);
 		tv.setBackgroundResource(R.drawable.bubble);
-		// tv.setCompoundDrawablesWithIntrinsicBounds(0,  0, android.R.drawable.ic_delete, 0);
+		// tv.setCompoundDrawablesWithIntrinsicBounds(0, 0,
+		// android.R.drawable.ic_delete, 0);
 		return tv;
 	}
-	
+
 	/**
 	 * Converts a TextView into Bitmap
+	 * 
 	 * @param view
 	 * @return
 	 */
-	public  Object convertViewToDrawable(View view){
+	public Object convertViewToDrawable(View view) {
 		int spec = MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED);
 		view.measure(spec, spec);
 		view.layout(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight());
-		Bitmap b = Bitmap.createBitmap(view.getMeasuredWidth(), view.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
+		Bitmap b = Bitmap.createBitmap(view.getMeasuredWidth(),
+				view.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
 		Canvas c = new Canvas(b);
 		c.translate(-view.getScrollX(), -view.getScrollY());
 		view.draw(c);
@@ -248,52 +265,45 @@ public class DetailedFeedback extends Activity {
 		Bitmap cacheBmp = view.getDrawingCache();
 		Bitmap viewBmp = cacheBmp.copy(Bitmap.Config.ARGB_8888, true);
 		view.destroyDrawingCache();
-		
+
 		return new BitmapDrawable(this.getResources(), viewBmp);
 	}
-	
+
 	/**
-	 * It puts together a TextView and a bitmap and returns 
-	 * a bunch of bitmaps as a SpannableStringBuilder object
-	 * which can be added to an EditText by simply using setText.
+	 * It puts together a TextView and a bitmap and returns a bunch of bitmaps
+	 * as a SpannableStringBuilder object which can be added to an EditText by
+	 * simply using setText.
+	 * 
 	 * @param args
 	 * @return
 	 */
-	public SpannableStringBuilder createTextTokenizer(String ...args){
+	public SpannableStringBuilder createTextTokenizer(String... args) {
 		SpannableStringBuilder ssb = new SpannableStringBuilder();
-		
-		
-		for(String msg : args){
+
+		for (String msg : args) {
 			TextView tv = createTextView(msg);
 			BitmapDrawable bd = (BitmapDrawable) convertViewToDrawable(tv);
 			bd.setBounds(0, 0, bd.getIntrinsicWidth(), bd.getIntrinsicHeight());
-			ssb.append(msg+" ");
-			
+			ssb.append(msg + " ");
+
 			ImageSpan imageSpan = new ImageSpan(bd);
-			
+
 			int start = ssb.length() - (msg.length() + 1);
 			int end = ssb.length() - 1;
-			
-			ssb.setSpan(imageSpan, start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+			ssb.setSpan(imageSpan, start, end,
+					Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 			ssb.setSpan(new ClickableSpan() {
-				
+
 				@Override
 				public void onClick(View widget) {
-					Log.v("SSB_CLICKED","Bubble Clicked");					
+					Log.v("SSB_CLICKED", "Bubble Clicked");
 				}
 			}, start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-			
+
 		}
 		return ssb;
 	}
-	
 
 } // end Class
-
-
-
-
-
-
-
 

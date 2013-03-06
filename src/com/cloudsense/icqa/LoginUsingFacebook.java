@@ -52,7 +52,7 @@ public class LoginUsingFacebook extends FragmentActivity {
 	                if (user != null) {
 	                    // Toast.makeText(getApplicationContext(), user.getFirstName()+" - "+user.getId(), Toast.LENGTH_LONG).show();
 	                    
-	                    Intent intent = new Intent(LoginUsingFacebook.this, DetailedFeedback.class); 
+	                    Intent intent = new Intent(LoginUsingFacebook.this, FeedbackActivity.class); 
 						intent.putExtra(FACEBOOK_USER_ID, user.getId());
 	                    startActivity(intent);
 	                }
