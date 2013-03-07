@@ -27,6 +27,7 @@ import android.text.Editable;
 import android.text.Selection;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.style.ClickableSpan;
 import android.text.style.ImageSpan;
@@ -90,19 +91,19 @@ public class DetailedFeedbackFragment extends Fragment {
 			btn.setOnClickListener(new View.OnClickListener() {
 				public void onClick(View v) {
 					chosen.add((String) btn.getText());
-					// editText.setText(TextUtils.join("-", chosen));
+
 					String[] array = new String[chosen.size()];
 					array = chosen.toArray(array);
 					SpannableStringBuilder ssb = createTextTokenizer(array);
 					editText.setText(ssb);
 					Selection.setSelection(editText.getText(), editText
 							.getText().length()); // set cursor at the end
-
+					
 					btn.setEnabled(false);
 				}
 			});
 		}
-
+		
 		editText.addTextChangedListener(new TextWatcher() {
 
 			// If all the text is deleted
@@ -132,13 +133,21 @@ public class DetailedFeedbackFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 
+				//==================================================
+				String[] val = String.valueOf(editText.getText())
+						.split(" ");
+				Log.v("EDIT_TEXT_ON_SUBMIT", TextUtils.join(":", val));
+				//==================================================
+				
+				
+				
 				new AsyncHttpPost().execute(SERVER_URL);
 				Intent intent = getActivity().getIntent();
 				intent.setClass(getActivity(), MainActivity.class);
 				startActivity(intent);
 			}
 		});
-	}
+	} // onStart
 
 	// Don't change the screen orientation
 	public void onConfigurationChanged(Configuration newConfig) {
@@ -218,7 +227,7 @@ public class DetailedFeedbackFragment extends Fragment {
 
 		@Override
 		protected void onPostExecute(String result) {
-			//Toast.makeText( getActivity, result, Toast.LENGTH_LONG).show();
+			// Toast.makeText( getActivity, result, Toast.LENGTH_LONG).show();
 			Log.v("DetailedFeedbackFragment - AsyncPost", result);
 		}
 	}
@@ -292,13 +301,23 @@ public class DetailedFeedbackFragment extends Fragment {
 
 			ssb.setSpan(imageSpan, start, end,
 					Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-			ssb.setSpan(new ClickableSpan() {
-
+			
+			
+			ClickableSpan clickSpan = new ClickableSpan() {
+				
 				@Override
-				public void onClick(View widget) {
-					Log.v("SSB_CLICKED", "Bubble Clicked");
+				public void onClick(View view) {
+					Log.v("clicked", view.getClass().getSimpleName());
+
+					int i = ((EditText) view).getSelectionStart();
+					int j = ((EditText) view).getSelectionEnd();
+					editText.getText().replace(Math.min(i, j ),
+							Math.max(i, j ), "", 0, "".length());				
 				}
-			}, start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+			};
+			
+			
+			ssb.setSpan(clickSpan, start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
 		}
 		return ssb;
