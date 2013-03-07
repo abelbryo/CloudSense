@@ -14,6 +14,9 @@ public class FeedbackActivity extends Activity {
 	public static Context appContext;
 	private static final String TAB_1 = "SIMPLE";
 	private static final String TAB_2 = "DETAILED";
+	
+	// For saving state
+	private static final String TAB = "tab"; // The current tab
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -35,8 +38,12 @@ public class FeedbackActivity extends Activity {
 
 		actionbar.addTab(PlayerTab);
 		actionbar.addTab(StationsTab);
+		
+		if(savedInstanceState != null){
+			actionbar.setSelectedNavigationItem(savedInstanceState.getInt(TAB));
+		}
 
-	}
+	} // onCreate
 
 	class FeedbackTabListener implements ActionBar.TabListener {
 		public Fragment fragment;
@@ -64,6 +71,12 @@ public class FeedbackActivity extends Activity {
 
 		}
 
+	} // FeedBackListener
+	
+	public void onSaveInstanceState(Bundle outState){
+		super.onSaveInstanceState(outState);
+		outState.putInt(TAB, getActionBar().getSelectedNavigationIndex());
 	}
+	
 
-}
+} // FragmentActivity == END ==
