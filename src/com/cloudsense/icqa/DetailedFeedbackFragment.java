@@ -14,7 +14,9 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 import org.xmlpull.v1.XmlSerializer;
 
+import android.app.Activity;
 import android.app.Fragment;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
@@ -29,6 +31,7 @@ import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.text.style.ImageSpan;
 import android.util.Log;
@@ -43,17 +46,26 @@ import android.widget.TextView;
 
 public class DetailedFeedbackFragment extends Fragment {
 
+	public static OnUserInputChangedListener mUserInputListener;
+	
+	private static Context appContext;
+
 	private Button feedbackSubmit;
 
 	private static final int CHOICE_BUTTON_NO = 11;
 	private static final String SERVER_URL = "http://130.233.124.173:9000/xmlPost";
 
-	private Button[] buttonArray; // 8 buttons so far
-	private EditText editText;
+	public static String [] buttonAdjectives = new String[CHOICE_BUTTON_NO];
+	
+	
+	private Button[] buttonArray;
+	private static EditText editText;
+
 	private ArrayList<String> chosen; // Array for holding the choices
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
+				
 		if (container == null)
 			return null;
 		return inflater.inflate(R.layout.detailed_feedback, container, false);
@@ -66,6 +78,7 @@ public class DetailedFeedbackFragment extends Fragment {
 
 	public void onStart() {
 		super.onStart();
+		appContext = getActivity();
 		feedbackSubmit = (Button) getActivity().findViewById(
 				R.id.feedback_button);
 		editText = (EditText) getActivity().findViewById(
@@ -85,6 +98,9 @@ public class DetailedFeedbackFragment extends Fragment {
 		buttonArray[9] = (Button) getActivity().findViewById(R.id.button10);
 		buttonArray[10] = (Button) getActivity().findViewById(R.id.button11);
 
+		for(int i = 0; i < buttonArray.length; i++)
+			buttonAdjectives[i] = buttonArray[i].getText().toString();
+				
 		chosen = new ArrayList<String>();
 
 		for (final Button btn : buttonArray) {
@@ -98,12 +114,13 @@ public class DetailedFeedbackFragment extends Fragment {
 					editText.setText(ssb);
 					Selection.setSelection(editText.getText(), editText
 							.getText().length()); // set cursor at the end
-					
+
 					btn.setEnabled(false);
 				}
 			});
 		}
-		
+
+		editText.setMovementMethod(LinkMovementMethod.getInstance());
 		editText.addTextChangedListener(new TextWatcher() {
 
 			// If all the text is deleted
@@ -117,7 +134,7 @@ public class DetailedFeedbackFragment extends Fragment {
 					chosen.clear();
 				}
 			}
-
+						
 			@Override
 			public void beforeTextChanged(CharSequence s, int start, int count,
 					int after) { /* empty */
@@ -133,14 +150,11 @@ public class DetailedFeedbackFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 
-				//==================================================
-				String[] val = String.valueOf(editText.getText())
-						.split(" ");
+				// ==================================================
+				String[] val = String.valueOf(editText.getText()).split(" ");
 				Log.v("EDIT_TEXT_ON_SUBMIT", TextUtils.join(":", val));
-				//==================================================
-				
-				
-				
+				// ==================================================
+
 				new AsyncHttpPost().execute(SERVER_URL);
 				Intent intent = getActivity().getIntent();
 				intent.setClass(getActivity(), MainActivity.class);
@@ -244,8 +258,8 @@ public class DetailedFeedbackFragment extends Fragment {
 	 * @param text
 	 * @return
 	 */
-	public TextView createTextView(String text) {
-		TextView tv = new TextView(getActivity());
+	public static TextView createTextView(String text) {
+		TextView tv = new TextView(appContext);
 		tv.setText(text);
 		tv.setTextSize(20);
 		tv.setBackgroundResource(R.drawable.bubble);
@@ -260,7 +274,7 @@ public class DetailedFeedbackFragment extends Fragment {
 	 * @param view
 	 * @return
 	 */
-	public Object convertViewToDrawable(View view) {
+	public static Object convertViewToDrawable(View view) {
 		int spec = MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED);
 		view.measure(spec, spec);
 		view.layout(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight());
@@ -274,7 +288,7 @@ public class DetailedFeedbackFragment extends Fragment {
 		Bitmap viewBmp = cacheBmp.copy(Bitmap.Config.ARGB_8888, true);
 		view.destroyDrawingCache();
 
-		return new BitmapDrawable(this.getResources(), viewBmp);
+		return new BitmapDrawable(appContext.getResources(), viewBmp);
 	}
 
 	/**
@@ -285,10 +299,10 @@ public class DetailedFeedbackFragment extends Fragment {
 	 * @param args
 	 * @return
 	 */
-	public SpannableStringBuilder createTextTokenizer(String... args) {
+	public static SpannableStringBuilder createTextTokenizer(String... args) {
 		SpannableStringBuilder ssb = new SpannableStringBuilder();
 
-		for (String msg : args) {
+		for (final String msg : args) {
 			TextView tv = createTextView(msg);
 			BitmapDrawable bd = (BitmapDrawable) convertViewToDrawable(tv);
 			bd.setBounds(0, 0, bd.getIntrinsicWidth(), bd.getIntrinsicHeight());
@@ -301,26 +315,34 @@ public class DetailedFeedbackFragment extends Fragment {
 
 			ssb.setSpan(imageSpan, start, end,
 					Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-			
-			
+
 			ClickableSpan clickSpan = new ClickableSpan() {
-				
+
 				@Override
 				public void onClick(View view) {
-					Log.v("clicked", view.getClass().getSimpleName());
-
-					int i = ((EditText) view).getSelectionStart();
-					int j = ((EditText) view).getSelectionEnd();
-					editText.getText().replace(Math.min(i, j ),
-							Math.max(i, j ), "", 0, "".length());				
+					mUserInputListener.onUserInputSelected(editText, msg);
 				}
 			};
-			
-			
-			ssb.setSpan(clickSpan, start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+			ssb.setSpan(clickSpan, start, end,
+					Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
 		}
 		return ssb;
+	}
+
+	public interface OnUserInputChangedListener {
+		public void onUserInputSelected(View view, String item);
+	}
+
+	public void onAttach(Activity activity) {
+		super.onAttach(activity);
+		try {
+			mUserInputListener = (OnUserInputChangedListener) activity;
+		} catch (ClassCastException e) {
+			throw new ClassCastException(activity.getClass().toString()
+					+ " should implement OnUserInputChangedListener");
+		}
 	}
 
 } // end Class
