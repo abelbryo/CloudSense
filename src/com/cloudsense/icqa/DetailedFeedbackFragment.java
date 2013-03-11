@@ -3,6 +3,7 @@ package com.cloudsense.icqa;
 import java.io.StringWriter;
 import java.net.HttpURLConnection;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.http.HttpResponse;
@@ -49,23 +50,21 @@ public class DetailedFeedbackFragment extends Fragment {
 	public static OnUserInputChangedListener mUserInputListener;
 	
 	private static Context appContext;
-
-	private Button feedbackSubmit;
-
+	private static EditText editText;
+	private static SpannableStringBuilder ssb;
 	private static final int CHOICE_BUTTON_NO = 11;
 	private static final String SERVER_URL = "http://130.233.124.173:9000/xmlPost";
-
-	public static String [] buttonAdjectives = new String[CHOICE_BUTTON_NO];
 	
+	public static String[] buttonAdjectives = new String[CHOICE_BUTTON_NO];
 	
 	private Button[] buttonArray;
-	private static EditText editText;
-
+	private Button feedbackSubmit;
 	private ArrayList<String> chosen; // Array for holding the choices
 
+	
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-				
+
 		if (container == null)
 			return null;
 		return inflater.inflate(R.layout.detailed_feedback, container, false);
@@ -98,23 +97,22 @@ public class DetailedFeedbackFragment extends Fragment {
 		buttonArray[9] = (Button) getActivity().findViewById(R.id.button10);
 		buttonArray[10] = (Button) getActivity().findViewById(R.id.button11);
 
-		for(int i = 0; i < buttonArray.length; i++)
+		for (int i = 0; i < buttonArray.length; i++)
 			buttonAdjectives[i] = buttonArray[i].getText().toString();
-				
+
 		chosen = new ArrayList<String>();
 
 		for (final Button btn : buttonArray) {
 			btn.setOnClickListener(new View.OnClickListener() {
 				public void onClick(View v) {
 					chosen.add((String) btn.getText());
+					
+					ssb = createTextTokenizer(btn.getText().toString());
+					editText.append(ssb);
 
-					String[] array = new String[chosen.size()];
-					array = chosen.toArray(array);
-					SpannableStringBuilder ssb = createTextTokenizer(array);
-					editText.setText(ssb);
-					Selection.setSelection(editText.getText(), editText
-							.getText().length()); // set cursor at the end
+					Log.d("DETAIL_FEEDBACK", editText.getText().toString());
 
+					
 					btn.setEnabled(false);
 				}
 			});
@@ -133,8 +131,9 @@ public class DetailedFeedbackFragment extends Fragment {
 						btn.setEnabled(true);
 					chosen.clear();
 				}
+				Selection.setSelection(editText.getText(), editText.getText().length()); // set cursor at the end
 			}
-						
+
 			@Override
 			public void beforeTextChanged(CharSequence s, int start, int count,
 					int after) { /* empty */
@@ -150,6 +149,9 @@ public class DetailedFeedbackFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 
+				chosen = new ArrayList<String>(Arrays.asList(editText.getText().toString().split(",")));
+				Log.v("UPON_SUBMIT", chosen.toString());
+				
 				// ==================================================
 				String[] val = String.valueOf(editText.getText()).split(" ");
 				Log.v("EDIT_TEXT_ON_SUBMIT", TextUtils.join(":", val));
@@ -306,7 +308,7 @@ public class DetailedFeedbackFragment extends Fragment {
 			TextView tv = createTextView(msg);
 			BitmapDrawable bd = (BitmapDrawable) convertViewToDrawable(tv);
 			bd.setBounds(0, 0, bd.getIntrinsicWidth(), bd.getIntrinsicHeight());
-			ssb.append(msg + " ");
+			ssb.append(msg + ",");
 
 			ImageSpan imageSpan = new ImageSpan(bd);
 

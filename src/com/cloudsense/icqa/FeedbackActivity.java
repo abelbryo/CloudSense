@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.text.Editable;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -21,9 +22,10 @@ public class FeedbackActivity extends FragmentActivity  implements FeedbackDialo
 	public static Context appContext;
 	private static final String TAB_1 = "SIMPLE";
 	private static final String TAB_2 = "DETAILED";
+		
+	private Editable input;
 	
 	
-	private View view; // this refers to the userinputbox in the detailedfeedbackfrag
 	
 	// For saving state
 	private static final String TAB = "tab"; // The current tab
@@ -32,6 +34,7 @@ public class FeedbackActivity extends FragmentActivity  implements FeedbackDialo
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.feedback_main_layout);
 		appContext = getApplicationContext();
+		
 
 		// ActionBar
 		ActionBar actionbar = getActionBar();
@@ -90,23 +93,25 @@ public class FeedbackActivity extends FragmentActivity  implements FeedbackDialo
 
 	@Override
 	public void onDialogNegativeButtonClick(DialogInterface dialog, String item) {
-		String formVal = ((EditText) view).getText().toString();
+		String formVal = input.toString();
 		int start = formVal.indexOf(item);
-		int end = start + item.length();
-		((EditText) view).getText().replace(start, end, "");
+		int end = start + item.length() + 1;
+		input.replace(start, end, "");
 		
 	}
 
+	// Happens when the user clicks on the lists
 	@Override
 	public void onDialogListItemClick(String[] items, String item, int index) {
-		String formVal = ((EditText) view).getText().toString();
+		String formVal = input.toString();
 		int start = formVal.indexOf(item);
-		int end = start + item.length();
-		((EditText) view).getText().replace(start, end, "");
-		//DetailedFeedbackFragment dff = new DetailedFeedbackFragment();
-		((EditText) view).getText().insert(start, DetailedFeedbackFragment.createTextTokenizer(items[index]));
+		int end = start + item.length()+1;
+		input.replace(start, end, "");
+		input.insert(start, DetailedFeedbackFragment.createTextTokenizer(items[index]));
 	}
 
+	
+	// Happens when the user clicks on the bubbles
 	@Override
 	public void onUserInputSelected(View view, String item) {
 		FeedbackDialog feedbackDialog = new FeedbackDialog();
@@ -116,8 +121,7 @@ public class FeedbackActivity extends FragmentActivity  implements FeedbackDialo
 		args.putString(FeedbackDialog.CHOSEN_ADJECTIVE, item);
 		feedbackDialog.setArguments(args);
 		feedbackDialog.show(getSupportFragmentManager(), "SimpleFeedbackDialog");
-		this.view = view;
+		input = ((EditText)view).getText(); 
+		
 	}
-	
-
 } // == END ==
