@@ -38,7 +38,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.15"
-            android:src="@drawable/co2" />
+            android:src="@drawable/sad" />
 
         <SeekBar
             android:id="@+id/seekBar1"
@@ -51,7 +51,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.15"
-            android:src="@drawable/co2" />
+            android:src="@drawable/happy" />
     </LinearLayout>
 
     
