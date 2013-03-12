@@ -5,12 +5,7 @@
     android:layout_height="fill_parent"
     android:fillViewport="true" >
 
-    <HorizontalScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:fillViewport="true" >
-
+    
         <RelativeLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res/com.cloudsense.icqa"
@@ -21,31 +16,39 @@
             android:orientation="vertical"
             android:paddingBottom="20dp" >
 
-            <EditText
-                android:id="@+id/feedback_edit_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/feedback_title"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="26dp"
-                android:ems="22"
-                android:hint="@string/feedback_hint"
-                android:inputType="textMultiLine"
-                android:maxLines="5"
-                android:minLines="3"
-                android:scrollHorizontally="true" >
-            </EditText>
+           <LinearLayout
+            android:id="@+id/title_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/grid_background"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="10dp"
+            android:padding="10dp"
+            >
 
             <TextView
                 android:id="@+id/feedback_title"
-                style="@style/feedback_title_text"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp"
-                android:gravity="center_vertical|center"
-                android:text="@string/feedback_title" />
+                android:layout_weight="0.2"
+                android:text="@string/feedback_title"
+                android:textSize="22sp"
+                style="@style/feedback_title_text" />
+
+            <EditText
+                android:id="@+id/feedback_edit_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.9"
+                android:textSize="18sp"
+                android:paddingTop="5dp"
+             	android:paddingBottom="5dp"
+             	android:hint="@string/feedback_tablet_hint"
+             	style="@style/edit_text_hint"
+             	/>
+        </LinearLayout>
 
             <Button
                 android:id="@+id/feedback_button"
@@ -71,7 +74,7 @@
                 android:id="@+id/choice_grid"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/feedback_edit_text"
+                android:layout_below="@+id/title_container"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="50dp"
                 android:layout_marginTop="50dp"
@@ -286,6 +289,6 @@
                 </LinearLayout>
             </android.support.v7.widget.GridLayout>
         </RelativeLayout>
-    </HorizontalScrollView>
+    
 
 </ScrollView>

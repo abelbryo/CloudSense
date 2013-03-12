@@ -19,7 +19,7 @@
     <string name="feedback_title">I feel</string>
     <string name="submit_button">Submit</string>
     <string name="feedback_hint">pick adjectives</string>
-    
+    <string name="feedback_tablet_hint">pick adjectives from below</string>
     
     <string name="button2">OK</string>
     <string name="button3">Cold</string>
