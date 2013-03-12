@@ -16,9 +16,9 @@
    
     
     <!-- feedback activity  -->
-    <string name="feedback_title">How do you feel about the climate quality in the room?</string>
+    <string name="feedback_title">I feel</string>
     <string name="submit_button">Submit</string>
-    <string name="feedback_hint">Pick adjectives from below. </string>
+    <string name="feedback_hint">pick adjectives</string>
     
     
     <string name="button2">OK</string>
