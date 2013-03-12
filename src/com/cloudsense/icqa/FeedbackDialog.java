@@ -45,7 +45,7 @@ public class FeedbackDialog extends DialogFragment {
 				{ "Cheerless", "Sad" } };
 
 		final String item = savedInstanceState.getString(CHOSEN_ADJECTIVE);
-		String[] keys = DetailedFeedbackFragment.buttonAdjectives;
+		String[] keys = DetailedFeedbackFragment.mButtonAdjectives;
 
 		if (item.equals(keys[0]))
 			items = finerChoiceAdjectives[0];

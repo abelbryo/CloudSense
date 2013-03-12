@@ -23,6 +23,18 @@
             android:orientation="vertical"
             android:paddingBottom="20dp" >
 
+             <TextView
+                android:id="@+id/feedback_title"
+                style="@style/feedback_title_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:gravity="center_vertical|center"
+                android:text="@string/feedback_title" />
+            
+            
             <EditText
                 android:id="@+id/feedback_edit_text"
                 android:layout_width="wrap_content"
@@ -35,21 +47,10 @@
                 android:inputType="textMultiLine"
                 android:maxLines="5"
                 android:minLines="3"
-                android:singleLine="false" >
-
-                <requestFocus android:background="#ccc" />
+                android:singleLine="false">     
             </EditText>
 
-            <TextView
-                android:id="@+id/feedback_title"
-                style="@style/feedback_title_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp"
-                android:gravity="center_vertical|center"
-                android:text="@string/feedback_title" />
+           
 
             <Button
                 android:id="@+id/feedback_button"

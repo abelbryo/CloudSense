@@ -27,6 +27,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.Selection;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
@@ -49,17 +50,18 @@ public class DetailedFeedbackFragment extends Fragment {
 
 	public static OnUserInputChangedListener mUserInputListener;
 	
-	private static Context appContext;
-	private static EditText editText;
-	private static SpannableStringBuilder ssb;
+	private static Context mAppContext;
+	private static EditText mEditText;
+	
+	private static SpannableStringBuilder mSsb;
 	private static final int CHOICE_BUTTON_NO = 11;
 	private static final String SERVER_URL = "http://130.233.124.173:9000/xmlPost";
 	
-	public static String[] buttonAdjectives = new String[CHOICE_BUTTON_NO];
+	public static String[] mButtonAdjectives = new String[CHOICE_BUTTON_NO];
 	
-	private Button[] buttonArray;
-	private Button feedbackSubmit;
-	private ArrayList<String> chosen; // Array for holding the choices
+	private Button[] mButtonArray;
+	private Button mFeedbackSubmit;
+	private ArrayList<String> mChosen; // Array for holding the choices
 
 	
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -77,49 +79,47 @@ public class DetailedFeedbackFragment extends Fragment {
 
 	public void onStart() {
 		super.onStart();
-		appContext = getActivity();
-		feedbackSubmit = (Button) getActivity().findViewById(
+		mAppContext = getActivity();
+		mFeedbackSubmit = (Button) getActivity().findViewById(
 				R.id.feedback_button);
-		editText = (EditText) getActivity().findViewById(
+		mEditText = (EditText) getActivity().findViewById(
 				R.id.feedback_edit_text);
+		mEditText.setInputType(InputType.TYPE_NULL); // Prevents keyboard input
 
-		buttonArray = new Button[CHOICE_BUTTON_NO];
+		mButtonArray = new Button[CHOICE_BUTTON_NO];
 
-		buttonArray[0] = (Button) getActivity().findViewById(R.id.button1);
-		buttonArray[1] = (Button) getActivity().findViewById(R.id.button2);
-		buttonArray[2] = (Button) getActivity().findViewById(R.id.button3);
-		buttonArray[3] = (Button) getActivity().findViewById(R.id.button4);
-		buttonArray[4] = (Button) getActivity().findViewById(R.id.button5);
-		buttonArray[5] = (Button) getActivity().findViewById(R.id.button6);
-		buttonArray[6] = (Button) getActivity().findViewById(R.id.button7);
-		buttonArray[7] = (Button) getActivity().findViewById(R.id.button8);
-		buttonArray[8] = (Button) getActivity().findViewById(R.id.button9);
-		buttonArray[9] = (Button) getActivity().findViewById(R.id.button10);
-		buttonArray[10] = (Button) getActivity().findViewById(R.id.button11);
+		mButtonArray[0] = (Button) getActivity().findViewById(R.id.button1);
+		mButtonArray[1] = (Button) getActivity().findViewById(R.id.button2);
+		mButtonArray[2] = (Button) getActivity().findViewById(R.id.button3);
+		mButtonArray[3] = (Button) getActivity().findViewById(R.id.button4);
+		mButtonArray[4] = (Button) getActivity().findViewById(R.id.button5);
+		mButtonArray[5] = (Button) getActivity().findViewById(R.id.button6);
+		mButtonArray[6] = (Button) getActivity().findViewById(R.id.button7);
+		mButtonArray[7] = (Button) getActivity().findViewById(R.id.button8);
+		mButtonArray[8] = (Button) getActivity().findViewById(R.id.button9);
+		mButtonArray[9] = (Button) getActivity().findViewById(R.id.button10);
+		mButtonArray[10] = (Button) getActivity().findViewById(R.id.button11);
 
-		for (int i = 0; i < buttonArray.length; i++)
-			buttonAdjectives[i] = buttonArray[i].getText().toString();
+		for (int i = 0; i < mButtonArray.length; i++)
+			mButtonAdjectives[i] = mButtonArray[i].getText().toString();
 
-		chosen = new ArrayList<String>();
+		mChosen = new ArrayList<String>();
 
-		for (final Button btn : buttonArray) {
+		for (final Button btn : mButtonArray) {
 			btn.setOnClickListener(new View.OnClickListener() {
 				public void onClick(View v) {
-					chosen.add((String) btn.getText());
+					mChosen.add((String) btn.getText());
 					
-					ssb = createTextTokenizer(btn.getText().toString());
-					editText.append(ssb);
-
-					Log.d("DETAIL_FEEDBACK", editText.getText().toString());
-
-					
+					mSsb = createTextTokenizer(btn.getText().toString());
+					mEditText.append(mSsb);
+					Log.d("DETAIL_FEEDBACK", mEditText.getText().toString());
 					btn.setEnabled(false);
 				}
 			});
 		}
-
-		editText.setMovementMethod(LinkMovementMethod.getInstance());
-		editText.addTextChangedListener(new TextWatcher() {
+				
+		mEditText.setMovementMethod(LinkMovementMethod.getInstance());
+		mEditText.addTextChangedListener(new TextWatcher() {
 
 			// If all the text is deleted
 			// enable the buttons again
@@ -127,11 +127,11 @@ public class DetailedFeedbackFragment extends Fragment {
 			public void onTextChanged(CharSequence s, int start, int before,
 					int count) {
 				if (s.toString().length() == 0) {
-					for (Button btn : buttonArray)
+					for (Button btn : mButtonArray)
 						btn.setEnabled(true);
-					chosen.clear();
+					mChosen.clear();
 				}
-				Selection.setSelection(editText.getText(), editText.getText().length()); // set cursor at the end
+				Selection.setSelection(mEditText.getText(), mEditText.getText().length()); // set cursor at the end
 			}
 
 			@Override
@@ -144,16 +144,16 @@ public class DetailedFeedbackFragment extends Fragment {
 			}
 		});
 
-		feedbackSubmit.setOnClickListener(new View.OnClickListener() {
+		mFeedbackSubmit.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 
-				chosen = new ArrayList<String>(Arrays.asList(editText.getText().toString().split(",")));
-				Log.v("UPON_SUBMIT", chosen.toString());
+				mChosen = new ArrayList<String>(Arrays.asList(mEditText.getText().toString().split(",")));
+				Log.v("UPON_SUBMIT", mChosen.toString());
 				
 				// ==================================================
-				String[] val = String.valueOf(editText.getText()).split(" ");
+				String[] val = String.valueOf(mEditText.getText()).split(" ");
 				Log.v("EDIT_TEXT_ON_SUBMIT", TextUtils.join(":", val));
 				// ==================================================
 
@@ -189,7 +189,7 @@ public class DetailedFeedbackFragment extends Fragment {
 			serializer.startDocument("UTF-8", true);
 			serializer.startTag("", "user-report");
 			serializer.attribute("", "user-id", user_id);
-			for (String c : chosen) {
+			for (String c : mChosen) {
 				serializer.startTag("", "value");
 				serializer.text(c);
 				serializer.endTag("", "value");
@@ -222,7 +222,7 @@ public class DetailedFeedbackFragment extends Fragment {
 				// "application/x-www-form-urlencoded"); // This MIME type is
 				// VERY IMPORTANT for forms. Spent few hours not knowing it.
 
-				String xml = writeXml(chosen);
+				String xml = writeXml(mChosen);
 				StringEntity entity = new StringEntity(xml, "UTF-8");
 				httpPost.setEntity(entity);
 				httpPost.addHeader("Accept", "application/xml");
@@ -261,7 +261,7 @@ public class DetailedFeedbackFragment extends Fragment {
 	 * @return
 	 */
 	public static TextView createTextView(String text) {
-		TextView tv = new TextView(appContext);
+		TextView tv = new TextView(mAppContext);
 		tv.setText(text);
 		tv.setTextSize(20);
 		tv.setBackgroundResource(R.drawable.bubble);
@@ -290,7 +290,7 @@ public class DetailedFeedbackFragment extends Fragment {
 		Bitmap viewBmp = cacheBmp.copy(Bitmap.Config.ARGB_8888, true);
 		view.destroyDrawingCache();
 
-		return new BitmapDrawable(appContext.getResources(), viewBmp);
+		return new BitmapDrawable(mAppContext.getResources(), viewBmp);
 	}
 
 	/**
@@ -322,7 +322,7 @@ public class DetailedFeedbackFragment extends Fragment {
 
 				@Override
 				public void onClick(View view) {
-					mUserInputListener.onUserInputSelected(editText, msg);
+					mUserInputListener.onUserInputSelected(mEditText, msg);
 				}
 			};
 
