@@ -106,7 +106,7 @@
                     xmlns:grid="http://schemas.android.com/apk/res-auto"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/grid_background"
+                    android:background="@drawable/grid_background_inner"
                     android:padding="5dp"
                     grid:alignmentMode="alignBounds"
                     grid:columnCount="3"
@@ -116,7 +116,7 @@
 
                     <Button
                         android:id="@+id/button2"
-                        style="?android:attr/buttonStyleSmall"
+                        style="@style/choice_button_text"
                         android:layout_width="wrap_content"
                         android:layout_height="30dp"
                         android:background="@drawable/button_choice"
@@ -124,7 +124,7 @@
 
                     <Button
                         android:id="@+id/button3"
-                        style="?android:attr/buttonStyleSmall"
+                        style="@style/choice_button_text"
                         android:layout_width="wrap_content"
                         android:layout_height="30dp"
                         android:background="@drawable/button_choice"
@@ -132,7 +132,7 @@
 
                     <Button
                         android:id="@+id/button9"
-                        style="?android:attr/buttonStyleSmall"
+                        style="@style/choice_button_text"
                         android:layout_width="wrap_content"
                         android:layout_height="30dp"
                         android:background="@drawable/button_choice"
@@ -151,7 +151,7 @@
 
                 <Button
                     android:id="@+id/luminance"
-                    android:layout_width="wrap_content"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/luminance" />
 
@@ -159,7 +159,7 @@
                     xmlns:grid="http://schemas.android.com/apk/res-auto"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/grid_background"
+                    android:background="@drawable/grid_background_inner"
                     android:padding="5dp"
                     grid:alignmentMode="alignBounds"
                     grid:columnCount="2"
@@ -169,7 +169,7 @@
 
                     <Button
                         android:id="@+id/button1"
-                        style="?android:attr/buttonStyleSmall"
+                        style="@style/choice_button_text"
                         android:layout_width="wrap_content"
                         android:layout_height="30dp"
                         android:background="@drawable/button_choice"
@@ -177,7 +177,7 @@
 
                     <Button
                         android:id="@+id/button4"
-                        style="?android:attr/buttonStyleSmall"
+                        style="@style/choice_button_text"
                         android:layout_width="wrap_content"
                         android:layout_height="30dp"
                         android:background="@drawable/button_choice"
@@ -203,7 +203,7 @@
                     xmlns:grid="http://schemas.android.com/apk/res-auto"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/grid_background"
+                    android:background="@drawable/grid_background_inner"
                     android:padding="5dp"
                     grid:alignmentMode="alignBounds"
                     grid:columnCount="3"
@@ -213,7 +213,7 @@
 
                     <Button
                         android:id="@+id/button5"
-                        style="?android:attr/buttonStyleSmall"
+                        style="@style/choice_button_text"
                         android:layout_width="wrap_content"
                         android:layout_height="30dp"
                         android:background="@drawable/button_choice"
@@ -221,7 +221,7 @@
 
                     <Button
                         android:id="@+id/button6"
-                        style="?android:attr/buttonStyleSmall"
+                        style="@style/choice_button_text"
                         android:layout_width="wrap_content"
                        	android:layout_height="30dp"
                         android:background="@drawable/button_choice"
@@ -229,7 +229,7 @@
 
                     <Button
                         android:id="@+id/button10"
-                        style="?android:attr/buttonStyleSmall"
+                        style="@style/choice_button_text"
                         android:layout_width="wrap_content"
                         android:layout_height="30dp"
                         android:background="@drawable/button_choice"
@@ -255,7 +255,7 @@
                     xmlns:grid="http://schemas.android.com/apk/res-auto"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/grid_background"
+                    android:background="@drawable/grid_background_inner"
                     android:padding="5dp"
                     grid:alignmentMode="alignBounds"
                     grid:columnCount="3"
@@ -265,7 +265,7 @@
 
                     <Button
                         android:id="@+id/button7"
-                        style="?android:attr/buttonStyleSmall"
+                        style="@style/choice_button_text"
                         android:layout_width="wrap_content"
                         android:layout_height="30dp"
                         android:background="@drawable/button_choice"
@@ -273,7 +273,7 @@
 
                     <Button
                         android:id="@+id/button8"
-                        style="?android:attr/buttonStyleSmall"
+                        style="@style/choice_button_text"
                         android:layout_width="wrap_content"
                         android:layout_height="30dp"
                         android:background="@drawable/button_choice"
@@ -281,7 +281,7 @@
 
                     <Button
                         android:id="@+id/button11"
-                        style="?android:attr/buttonStyleSmall"
+                        style="@style/choice_button_text"
                         android:layout_width="wrap_content"
                         android:layout_height="30dp"
                         android:background="@drawable/button_choice"
