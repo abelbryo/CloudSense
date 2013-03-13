@@ -1,7 +1,5 @@
 package com.cloudsense.icqa;
 
-import java.util.Stack;
-
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,7 +12,7 @@ import android.widget.TextView;
 public class SimpleFeedbackFragment extends Fragment {
 
 	private SeekBar seekBar;
-	private Stack<String> stack = new Stack<String>(); // for the simple
+	//private Stack<String> stack = new Stack<String>(); // for the simple
 														// animation
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -35,8 +33,9 @@ public class SimpleFeedbackFragment extends Fragment {
 	public void onStart() {
 		super.onStart();
 		seekBar = (SeekBar) getActivity().findViewById(R.id.seekBar1);
-		TextView text = (TextView) getActivity().findViewById(R.id.animation);
-		eventHandler(text);
+		seekBar.setProgress(50); // initial position of the SeekBar
+		TextView textView = (TextView) getActivity().findViewById(R.id.animation);
+		eventHandler(textView);
 	}
 
 	public void eventHandler(final View v) {
@@ -50,19 +49,26 @@ public class SimpleFeedbackFragment extends Fragment {
 
 			@Override
 			public void onStartTrackingTouch(SeekBar seekBar) {
+
 			}
 
 			@Override
 			public void onProgressChanged(SeekBar seekBar, int progress,
 					boolean fromUser) {
 
-				String[] str = { "/", "--", "\\", "|" };
+				/*String[] str = { "/", "--", "\\", "|" };
 				if (stack.isEmpty()) {
 					for (String s : str) {
 						stack.push(s);
 					}
 				}
-				((TextView) v).setText(stack.pop());
+				((TextView) v).setText(stack.pop());*/
+				int val = progress  / 10; 
+				
+				((TextView) v).setText(String.valueOf(val));
+				
+				
+				
 			}
 		});
 	}

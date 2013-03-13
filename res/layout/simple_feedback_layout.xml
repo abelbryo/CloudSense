@@ -22,7 +22,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
         android:textSize="72sp"
-        android:text="--" />
+        android:text="5" />
     
     
     <LinearLayout
