@@ -41,12 +41,13 @@
                 android:id="@+id/feedback_edit_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textSize="18sp"
-                style="@style/edit_text_hint"
                 android:layout_weight="0.9"
+                android:textSize="18sp"
                 android:hint="@string/feedback_hint"
              	android:paddingTop="5dp"
              	android:paddingBottom="5dp"
+             	android:scrollHorizontally="true"
+             	style="@style/edit_text_hint"
              	/>
         </LinearLayout>
 
@@ -76,13 +77,13 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/title_container"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="50dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginBottom="30dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/grid_background"
-            android:padding="5dp"
+            android:padding="6dp"
             grid:alignmentMode="alignBounds"
-            grid:columnCount="2"
-            grid:rowCount="2"
+            grid:columnCount="1"
+            grid:rowCount="4"
             grid:rowOrderPreserved="false"
             grid:useDefaultMargins="true" >
 
@@ -106,10 +107,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/grid_background"
-                    android:padding="2dp"
+                    android:padding="5dp"
                     grid:alignmentMode="alignBounds"
-                    grid:columnCount="2"
-                    grid:rowCount="2"
+                    grid:columnCount="3"
+                    grid:rowCount="1"
                     grid:rowOrderPreserved="false"
                     grid:useDefaultMargins="true" >
 
@@ -117,7 +118,7 @@
                         android:id="@+id/button2"
                         style="?android:attr/buttonStyleSmall"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="30dp"
                         android:background="@drawable/button_choice"
                         android:text="@string/button2" />
 
@@ -125,7 +126,7 @@
                         android:id="@+id/button3"
                         style="?android:attr/buttonStyleSmall"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="30dp"
                         android:background="@drawable/button_choice"
                         android:text="@string/button3" />
 
@@ -133,7 +134,7 @@
                         android:id="@+id/button9"
                         style="?android:attr/buttonStyleSmall"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="30dp"
                         android:background="@drawable/button_choice"
                         android:text="@string/button9" />
                 </android.support.v7.widget.GridLayout>
@@ -159,10 +160,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/grid_background"
-                    android:padding="2dp"
+                    android:padding="5dp"
                     grid:alignmentMode="alignBounds"
-                    grid:columnCount="1"
-                    grid:rowCount="2"
+                    grid:columnCount="2"
+                    grid:rowCount="1"
                     grid:rowOrderPreserved="false"
                     grid:useDefaultMargins="true" >
 
@@ -170,7 +171,7 @@
                         android:id="@+id/button1"
                         style="?android:attr/buttonStyleSmall"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="30dp"
                         android:background="@drawable/button_choice"
                         android:text="@string/button1" />
 
@@ -178,7 +179,7 @@
                         android:id="@+id/button4"
                         style="?android:attr/buttonStyleSmall"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="30dp"
                         android:background="@drawable/button_choice"
                         android:text="@string/button4" />
                 </android.support.v7.widget.GridLayout>
@@ -203,10 +204,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/grid_background"
-                    android:padding="2dp"
+                    android:padding="5dp"
                     grid:alignmentMode="alignBounds"
-                    grid:columnCount="2"
-                    grid:rowCount="2"
+                    grid:columnCount="3"
+                    grid:rowCount="1"
                     grid:rowOrderPreserved="false"
                     grid:useDefaultMargins="true" >
 
@@ -214,7 +215,7 @@
                         android:id="@+id/button5"
                         style="?android:attr/buttonStyleSmall"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="30dp"
                         android:background="@drawable/button_choice"
                         android:text="@string/button5" />
 
@@ -222,7 +223,7 @@
                         android:id="@+id/button6"
                         style="?android:attr/buttonStyleSmall"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                       	android:layout_height="30dp"
                         android:background="@drawable/button_choice"
                         android:text="@string/button6" />
 
@@ -230,7 +231,7 @@
                         android:id="@+id/button10"
                         style="?android:attr/buttonStyleSmall"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="30dp"
                         android:background="@drawable/button_choice"
                         android:text="@string/button10" />
                 </android.support.v7.widget.GridLayout>
@@ -255,10 +256,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/grid_background"
-                    android:padding="2dp"
+                    android:padding="5dp"
                     grid:alignmentMode="alignBounds"
-                    grid:columnCount="2"
-                    grid:rowCount="2"
+                    grid:columnCount="3"
+                    grid:rowCount="1"
                     grid:rowOrderPreserved="false"
                     grid:useDefaultMargins="true" >
 
@@ -266,7 +267,7 @@
                         android:id="@+id/button7"
                         style="?android:attr/buttonStyleSmall"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="30dp"
                         android:background="@drawable/button_choice"
                         android:text="@string/button7" />
 
@@ -274,7 +275,7 @@
                         android:id="@+id/button8"
                         style="?android:attr/buttonStyleSmall"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="30dp"
                         android:background="@drawable/button_choice"
                         android:text="@string/button8" />
 
@@ -282,7 +283,7 @@
                         android:id="@+id/button11"
                         style="?android:attr/buttonStyleSmall"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="30dp"
                         android:background="@drawable/button_choice"
                         android:text="@string/button11" />
                 </android.support.v7.widget.GridLayout>
