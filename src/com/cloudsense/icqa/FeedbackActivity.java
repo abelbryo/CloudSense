@@ -21,14 +21,14 @@ public class FeedbackActivity extends FragmentActivity  implements FeedbackDialo
 
 	public static Context appContext;
 	private static final String TAB_1 = "SIMPLE";
-	private static final String TAB_2 = "DETAILED";
+	protected static final String TAB_2 = "DETAILED";
 		
 	private Editable input;
-	
+	private ActionBar actionbar;
 	
 	
 	// For saving state
-	private static final String TAB = "tab"; // The current tab
+	public static final String TAB = "tab"; // The current tab
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -37,7 +37,7 @@ public class FeedbackActivity extends FragmentActivity  implements FeedbackDialo
 		
 
 		// ActionBar
-		ActionBar actionbar = getActionBar();
+		actionbar = getActionBar();
 		actionbar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
 		ActionBar.Tab simpleTab = actionbar.newTab().setText(TAB_1);
@@ -116,7 +116,6 @@ public class FeedbackActivity extends FragmentActivity  implements FeedbackDialo
 	public void onUserInputSelected(View view, String item) {
 		FeedbackDialog feedbackDialog = new FeedbackDialog();
 		Log.d(getClass().toString(), item); 
-		
 		Bundle args = new Bundle();
 		args.putString(FeedbackDialog.CHOSEN_ADJECTIVE, item);
 		feedbackDialog.setArguments(args);

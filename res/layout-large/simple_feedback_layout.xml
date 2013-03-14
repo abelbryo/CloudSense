@@ -22,7 +22,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="64dp"
         android:textSize="72sp"
-        android:text="5" />
+        android:text="@string/initial_value" />
     
     
     <LinearLayout
@@ -38,7 +38,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.15"
-            android:src="@drawable/sad" />
+            android:src="@drawable/sad"
+            android:contentDescription="@string/sad" />
 
         <SeekBar
             android:id="@+id/seekBar1"
@@ -51,9 +52,37 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.15"
-            android:src="@drawable/happy" />
+            android:src="@drawable/happy"
+            android:contentDescription="@string/sad" />
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/button_container"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff4c0"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_vertical"
+        >
+        <Button
+            android:id="@+id/simple_submit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/button_green"
+            android:text="@string/submit"
+            style="@style/button_text_small" />        
+        <Button
+            android:id="@+id/more_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/button_green"
+            android:text="@string/more"
+            style="@style/button_text_small" />
+        
+    </LinearLayout>
+    
     
 
 </RelativeLayout>

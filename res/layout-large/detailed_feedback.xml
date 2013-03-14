@@ -35,7 +35,8 @@
                 android:layout_weight="0.2"
                 android:text="@string/feedback_title"
                 android:textSize="22sp"
-                style="@style/feedback_title_text" />
+                style="@style/feedback_title_text"
+                android:layout_gravity="center_vertical" />
 
             <EditText
                 android:id="@+id/feedback_edit_text"
@@ -46,6 +47,7 @@
                 android:paddingTop="5dp"
              	android:paddingBottom="5dp"
              	android:hint="@string/feedback_tablet_hint"
+             	android:background="@android:drawable/editbox_background"
              	style="@style/edit_text_hint"
              	/>
         </LinearLayout>
@@ -115,7 +117,7 @@
 
                         <Button
                             android:id="@+id/button2"
-                            style="?android:attr/buttonStyleSmall"
+                            style="@style/choice_button_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/button_choice"
@@ -123,7 +125,7 @@
 
                         <Button
                             android:id="@+id/button3"
-                            style="?android:attr/buttonStyleSmall"
+                            style="@style/choice_button_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/button_choice"
@@ -131,7 +133,7 @@
 
                         <Button
                             android:id="@+id/button9"
-                            style="?android:attr/buttonStyleSmall"
+                            style="@style/choice_button_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/button_choice"
@@ -168,7 +170,7 @@
 
                         <Button
                             android:id="@+id/button1"
-                            style="?android:attr/buttonStyleSmall"
+                            style="@style/choice_button_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/button_choice"
@@ -176,7 +178,7 @@
 
                         <Button
                             android:id="@+id/button4"
-                            style="?android:attr/buttonStyleSmall"
+                            style="@style/choice_button_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/button_choice"
@@ -212,7 +214,7 @@
 
                         <Button
                             android:id="@+id/button5"
-                            style="?android:attr/buttonStyleSmall"
+                            style="@style/choice_button_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/button_choice"
@@ -220,7 +222,7 @@
 
                         <Button
                             android:id="@+id/button6"
-                            style="?android:attr/buttonStyleSmall"
+                            style="@style/choice_button_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/button_choice"
@@ -228,7 +230,7 @@
 
                         <Button
                             android:id="@+id/button10"
-                            style="?android:attr/buttonStyleSmall"
+                            style="@style/choice_button_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/button_choice"
@@ -264,7 +266,7 @@
 
                         <Button
                             android:id="@+id/button7"
-                            style="?android:attr/buttonStyleSmall"
+                            style="@style/choice_button_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/button_choice"
@@ -272,7 +274,7 @@
 
                         <Button
                             android:id="@+id/button8"
-                            style="?android:attr/buttonStyleSmall"
+                            style="@style/choice_button_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/button_choice"
@@ -280,7 +282,7 @@
 
                         <Button
                             android:id="@+id/button11"
-                            style="?android:attr/buttonStyleSmall"
+                            style="@style/choice_button_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/button_choice"
@@ -289,6 +291,4 @@
                 </LinearLayout>
             </android.support.v7.widget.GridLayout>
         </RelativeLayout>
-    
-
 </ScrollView>

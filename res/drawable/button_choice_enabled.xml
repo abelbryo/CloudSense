@@ -13,6 +13,9 @@
                 android:left="10dp"
                 android:right="10dp"
                  />
+            <size
+      		    android:width="80dp"
+      		   	android:height="10dp" />
         </shape>
     </item>
     <item>
@@ -29,6 +32,9 @@
             <padding
                 android:left="10dp"
                 android:right="10dp" />
+            <size
+      		    android:width="80dp"
+      		   	android:height="10dp" />
         </shape>
     </item>
 </selector>
