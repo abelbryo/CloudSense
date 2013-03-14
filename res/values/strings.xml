@@ -15,7 +15,7 @@
     
    
     
-    <!-- feedback activity  -->
+    <!-- detailed feedback  -->
     <string name="feedback_title">I feel</string>
     <string name="submit_button">Submit</string>
     <string name="feedback_hint">pick adjectives</string>
@@ -41,9 +41,13 @@
     <string name="air_quality">Air Quality</string>
     <string name="space">Space</string>
     
-    <!-- Simple feedback Title -->
+    <!-- Simple feedback -->
     <string name="simple_feedback_title">How do you feel about the indoor climate?</string>
-    
+    <string name="sad">Sad</string>
+    <string name="happy">Happy</string>
+    <string name="more">More</string>
+    <string name="submit">Submit</string>
+    <string name="initial_value">5</string>
     
     <!-- indoor map  -->
      <string name="transparency">Transparency</string>

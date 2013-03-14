@@ -8,8 +8,8 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:gravity="center_vertical"
-        android:layout_marginTop="10dp"
+        android:background="#c3edff"
+        android:layout_marginTop="5dp"
          >
 
         <Button
@@ -18,7 +18,7 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:background="@drawable/button_green"
+            android:background="@drawable/button_black"
             android:text="@string/submit_button" />
     </LinearLayout>
 
@@ -63,6 +63,7 @@
                 <EditText
                     android:id="@+id/feedback_edit_text"
                     style="@style/edit_text_hint"
+                    android:background="@android:drawable/editbox_background"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.9"

@@ -265,8 +265,7 @@ public class DetailedFeedbackFragment extends Fragment {
 		tv.setText(text);
 		tv.setTextSize(20);
 		tv.setBackgroundResource(R.drawable.bubble);
-		// tv.setCompoundDrawablesWithIntrinsicBounds(0, 0,
-		// android.R.drawable.ic_delete, 0);
+		tv.setCompoundDrawablesWithIntrinsicBounds(0, 0, android.R.drawable.arrow_down_float, 0);
 		return tv;
 	}
 
