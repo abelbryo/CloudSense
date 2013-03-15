@@ -54,9 +54,12 @@ public class FeedbackActivity extends FragmentActivity  implements FeedbackDialo
 		
 		if(savedInstanceState != null){
 			actionbar.setSelectedNavigationItem(savedInstanceState.getInt(TAB));
+			SimpleFeedbackFragment.mCurrentProgress = savedInstanceState.getInt(SimpleFeedbackFragment.SEEKBAR_PROGRESS);
 		}
 
 	} // onCreate
+	
+		
 
 	class FeedbackTabListener implements ActionBar.TabListener {
 		public Fragment fragment;
@@ -89,6 +92,7 @@ public class FeedbackActivity extends FragmentActivity  implements FeedbackDialo
 	public void onSaveInstanceState(Bundle outState){
 		super.onSaveInstanceState(outState);
 		outState.putInt(TAB, getActionBar().getSelectedNavigationIndex());
+		outState.putInt(SimpleFeedbackFragment.SEEKBAR_PROGRESS, SimpleFeedbackFragment.mCurrentProgress);
 	}
 
 	@Override

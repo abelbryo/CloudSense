@@ -345,6 +345,12 @@ public class DetailedFeedbackFragment extends Fragment {
 					+ " should implement OnUserInputChangedListener");
 		}
 	}
+	
+	
+	public void onSaveInstanceState(Bundle outState){
+		super.onSaveInstanceState(outState);
+	}
+	
 
-} // end Class
+} // == END
 
