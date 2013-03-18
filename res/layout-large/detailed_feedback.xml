@@ -1,74 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app1="http://schemas.android.com/apk/res-auto"
     android:id="@+id/ScrollView01"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:fillViewport="true" >
+    android:fillViewport="true"
+    android:background="@drawable/chart_background"
+    android:paddingTop="1dp" >
 
-    
-        <RelativeLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res/com.cloudsense.icqa"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:orientation="vertical"
-            android:paddingBottom="20dp" >
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res/com.cloudsense.icqa"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/grey_background_pattern"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical"
+        android:paddingBottom="20dp" >
 
-           <LinearLayout
+        <LinearLayout
             android:id="@+id/title_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/grid_background"
-            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_marginBottom="10dp"
-            android:padding="10dp"
-            >
+            android:layout_marginTop="10dp"
+            android:background="@drawable/grid_background"
+            android:padding="10dp" >
 
             <TextView
                 android:id="@+id/feedback_title"
+                style="@style/feedback_title_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:layout_weight="0.2"
                 android:text="@string/feedback_title"
-                android:textSize="22sp"
-                style="@style/feedback_title_text"
-                android:layout_gravity="center_vertical" />
+                android:textSize="22sp" />
 
             <EditText
                 android:id="@+id/feedback_edit_text"
+                style="@style/edit_text_hint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.9"
-                android:textSize="18sp"
+                android:background="@android:drawable/editbox_background"
+                android:hint="@string/feedback_tablet_hint"
+                android:paddingBottom="5dp"
                 android:paddingTop="5dp"
-             	android:paddingBottom="5dp"
-             	android:hint="@string/feedback_tablet_hint"
-             	android:background="@android:drawable/editbox_background"
-             	style="@style/edit_text_hint"
-             	/>
+                android:textSize="18sp" />
         </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/title_container"
+            android:layout_centerHorizontal="true" >
 
             <Button
                 android:id="@+id/feedback_button"
                 style="@style/button_text_small"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/choice_grid"
+                android:layout_alignRight="@+id/choice_grid"
                 android:layout_below="@+id/choice_grid"
-                android:layout_centerHorizontal="true"
                 android:background="@drawable/button_green"
                 android:text="@string/submit_button" />
-
-            <!--
-         GridLayout plumbing
-    	Normally GridLayout doesn't work for Older Android Phones
-    	therefore, I had to use the support library for backward 
-    	compatibility. Here is more info on that
-    	http://code.google.com/p/android-playground/source/browse/trunk/GridLayoutCompatSample/res/layout/grid_layout_1.xml 
-            -->
 
             <android.support.v7.widget.GridLayout
                 xmlns:android="http://schemas.android.com/apk/res/android"
@@ -82,15 +82,11 @@
                 android:layout_marginTop="50dp"
                 android:background="@drawable/grid_background"
                 android:padding="10dp"
-                grid:alignmentMode="alignBounds"
-                grid:columnCount="2"
+                app1:alignmentMode="alignBounds"
+                app1:columnCount="2"
                 grid:rowCount="2"
                 grid:rowOrderPreserved="false"
                 grid:useDefaultMargins="true" >
-
-                <!-- ======================================= -->
-                <!-- ============ Temperature =========== -->
-                <!-- ======================================= -->
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -141,10 +137,6 @@
                     </android.support.v7.widget.GridLayout>
                 </LinearLayout>
 
-                <!-- ================================================= -->
-                <!-- ============ Luminance - Bright, dark =========== -->
-                <!-- ================================================= -->
-
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -185,9 +177,6 @@
                             android:text="@string/button4" />
                     </android.support.v7.widget.GridLayout>
                 </LinearLayout>
-                <!-- ======================================================= -->
-                <!-- ============ Air Quality - Fresh, Stale etc =========== -->
-                <!-- ======================================================= -->
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -237,9 +226,6 @@
                             android:text="@string/button10" />
                     </android.support.v7.widget.GridLayout>
                 </LinearLayout>
-                <!-- ============================================================ -->
-                <!-- ============ Environment - Comfy, Cheerless etc  =========== -->
-                <!-- ============================================================ -->
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -291,4 +277,6 @@
                 </LinearLayout>
             </android.support.v7.widget.GridLayout>
         </RelativeLayout>
+    </RelativeLayout>
+
 </ScrollView>

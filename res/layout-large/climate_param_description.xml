@@ -2,8 +2,11 @@
     android:id="@+id/climate_detail"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#B0E57C"
-    android:orientation="vertical" >
+    android:background="@drawable/grey_background_pattern"
+    android:orientation="vertical"
+    android:paddingBottom="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp" >
 
     <TextView
         android:id="@+id/climate_param_desc"
