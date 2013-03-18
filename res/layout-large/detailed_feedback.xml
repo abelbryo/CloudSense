@@ -5,7 +5,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:fillViewport="true"
-    android:background="@drawable/chart_background"
+    android:background="@drawable/background_with_border"
     android:paddingTop="1dp" >
 
     <RelativeLayout

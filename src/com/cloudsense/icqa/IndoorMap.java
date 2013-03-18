@@ -47,17 +47,30 @@ public class IndoorMap extends android.support.v4.app.FragmentActivity {
 		mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(point, 17.0f));
 		
 		mMap.addGroundOverlay(new GroundOverlayOptions()
-			//.bearing(12.70f)
-			.image(BitmapDescriptorFactory.fromResource(R.drawable.tuas_warped))
+			//.bearing(-2.70f)
+			.image(BitmapDescriptorFactory.fromResource(R.drawable.tuas))
 			.positionFromBounds(setupBounds())
-			.transparency(0.5f));
+			.transparency(0.f));
 		
 
 	}
 	
 	public LatLngBounds setupBounds(){
-		LatLng  northEast = new LatLng(60.18771980524313, 24.820497035972608);
-		LatLng  southWest = new LatLng(60.18677168239048, 24.817380309097302);
+		/*
+		 * Ground control points for the ground overlay bitmap
+		 * 
+		 * GCP Projection =
+		 *	GCP[  0]: Id=1, Info=
+		 *	          (0,0) -> (24.8172971606177,60.1876397959336,0)
+		 *	GCP[  1]: Id=2, Info=
+		 *	          (2000,0) -> (24.8207008838576,60.187691802007,0)
+		 *	GCP[  2]: Id=3, Info=
+		 *	          (2000,1140) -> (24.8207411169928,60.1867276760235,0)
+		 */
+		
+		LatLng  northEast = new LatLng(60.187691802007, 24.8207008838576);
+		LatLng  southWest = new LatLng(60.1866756699501, 24.8172971606177);
+		// 60.1866756699501
 		return new LatLngBounds(southWest, northEast);
 	}
 
