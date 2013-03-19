@@ -22,6 +22,7 @@ public class FeedbackActivity extends FragmentActivity  implements FeedbackDialo
 	public static Context appContext;
 	private static final String TAB_1 = "SIMPLE";
 	protected static final String TAB_2 = "DETAILED";
+	protected static final String TAB_3 = "REPORT";
 		
 	private Editable input;
 	private ActionBar actionbar;
@@ -42,15 +43,19 @@ public class FeedbackActivity extends FragmentActivity  implements FeedbackDialo
 
 		ActionBar.Tab simpleTab = actionbar.newTab().setText(TAB_1);
 		ActionBar.Tab detailedTab = actionbar.newTab().setText(TAB_2);
+		ActionBar.Tab failureReportTab = actionbar.newTab().setText(TAB_3);
 
 		Fragment simpleFeedback = new SimpleFeedbackFragment();
 		Fragment detailedFeedback = new DetailedFeedbackFragment();
+		Fragment failureReportForm = new FailureReportFragment();
 
 		simpleTab.setTabListener(new FeedbackTabListener(simpleFeedback));
 		detailedTab.setTabListener(new FeedbackTabListener(detailedFeedback));
-
+		failureReportTab.setTabListener(new FeedbackTabListener(failureReportForm));
+		
 		actionbar.addTab(simpleTab);
 		actionbar.addTab(detailedTab);
+		actionbar.addTab(failureReportTab);
 		
 		if(savedInstanceState != null){
 			actionbar.setSelectedNavigationItem(savedInstanceState.getInt(TAB));
