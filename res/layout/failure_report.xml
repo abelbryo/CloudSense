@@ -1,37 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/background_with_border" >
 
-    <TextView
-        android:id="@+id/failure_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="22dp"
-        android:text="@string/title_failure_report" />
-
-    <EditText
-        android:id="@+id/failure_report_editText"
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/failure_title"
-        android:layout_marginTop="28dp"
-        android:background="@android:drawable/editbox_background_normal"
-        android:ems="10"
-        android:lines="2"
-        android:hint="" />
+        android:layout_height="match_parent"
+        android:layout_marginTop="1dp"
+        android:background="@drawable/grey_background_pattern"
+        android:orientation="vertical" >
 
-    <Button
-        android:id="@+id/failure_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/failure_report_editText"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:text="@string/submit_failure_report" />
+        <TextView
+            android:id="@+id/failure_title"
+            style="@style/simple_feedback_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="22dp"
+            android:text="@string/title_failure_report" />
 
-</RelativeLayout>
+        <EditText
+            android:id="@+id/failure_report_editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/failure_title"
+            android:layout_marginTop="28dp"
+            android:background="@android:drawable/editbox_background_normal"
+            android:ems="10"
+            android:hint=""
+            android:lines="2" />
+
+        <Button
+            android:id="@+id/failure_button"
+            style="@style/button_text_small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/failure_report_editText"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="34dp"
+            android:background="@drawable/button_green"
+            android:text="@string/submit_failure_report" />
+    </RelativeLayout>
+
+</LinearLayout>

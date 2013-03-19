@@ -50,23 +50,23 @@ public class FailureReportFragment extends Fragment {
 							"Form is empty.Report not delivered.",
 							Toast.LENGTH_SHORT).show();
 				else
-					new SendViaAsyncTask().execute(URL);
+					new SendWithAsyncTask().execute(URL);
 			}
 		});
 	}
 
-	private class SendViaAsyncTask extends AsyncTask<String, String, String> {
+	private class SendWithAsyncTask extends AsyncTask<String, String, String> {
 
 		@Override
 		protected String doInBackground(String... param) {
 			HttpClient httpClient = new DefaultHttpClient();
 			HttpPost httpPost = new HttpPost(param[0]);
 
-			String val = mEditText.getText().toString();
+			String report = mEditText.getText().toString();
 			byte[] result = null;
 			String str = null;
 			try {
-				StringEntity entity = new StringEntity(val, "utf-8");
+				StringEntity entity = new StringEntity(report, "utf-8");
 				httpPost.setEntity(entity);
 
 				httpPost.addHeader("Content-Type",

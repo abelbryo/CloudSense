@@ -71,8 +71,11 @@ public class IndoorMap extends android.support.v4.app.FragmentActivity {
 		//LatLng  northEast = new LatLng(60.187691802007, 24.8207008838576);
 		//LatLng  southWest = new LatLng(60.1866756699501, 24.8172971606177);
 		
-		LatLng  northEast = new LatLng(60.1876397959336, 24.8207008838576);
-		LatLng  southWest = new LatLng(60.1866756699501, 24.8172971606177);
+		
+		double deltaLat = 0.000015; // correction value
+		
+		LatLng  northEast = new LatLng(60.1876397959336 + (2.4 * deltaLat), 24.8207008838576);
+		LatLng  southWest = new LatLng(60.1866756699501 + deltaLat, 24.8172971606177);
 		
 		
 		// 60.1866756699501
