@@ -15,7 +15,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.view.ViewGroup;
 
-public class TemperatureChart extends MotherChart{
+public class CarbondioxideChart extends MotherChart{
 
 	private GraphicalView mChartView;
 
@@ -29,14 +29,14 @@ public class TemperatureChart extends MotherChart{
 
 	private ViewGroup layout; 
 	
-	public TemperatureChart (ViewGroup layout){
+	public CarbondioxideChart(ViewGroup layout){
 		super(); 
 		this.layout = layout;
 	}
 	
 		
 	public void initChart() {
-		mCurrentSeries = new TimeSeries("Office 2531 - Temperature data");
+		mCurrentSeries = new TimeSeries("Office 2531 - CO2 data");
 		mDataset.addSeries(mCurrentSeries);
 		mCurrentRenderer = new XYSeriesRenderer();
 		mRenderer.addSeriesRenderer(mCurrentRenderer);
@@ -75,16 +75,16 @@ public class TemperatureChart extends MotherChart{
 			mCurrentRenderer.setLineWidth(3.0f);
 			mCurrentRenderer.setHighlighted(true);
 
-			mCurrentSeries.add(date1, 23);
-			mCurrentSeries.add(date2, 22.5);
-			mCurrentSeries.add(date3, 21.5);
-			mCurrentSeries.add(date4, 23);
-			mCurrentSeries.add(date5, 24.42);
-			mCurrentSeries.add(date6, 19);
-			mCurrentSeries.add(date7, 20.8);
-			mCurrentSeries.add(date8, 21);
-			mCurrentSeries.add(date9, 22);
-			mCurrentSeries.add(date10, 24.8);
+			mCurrentSeries.add(date1, 600);
+			mCurrentSeries.add(date2, 550);
+			mCurrentSeries.add(date3, 570);
+			mCurrentSeries.add(date4, 540);
+			mCurrentSeries.add(date5, 550);
+			mCurrentSeries.add(date6, 570);
+			mCurrentSeries.add(date7, 560);
+			mCurrentSeries.add(date8, 600);
+			mCurrentSeries.add(date9, 580);
+			mCurrentSeries.add(date10, 550);
 
 		} catch (Exception e) {
 		}

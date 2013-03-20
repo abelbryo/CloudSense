@@ -34,15 +34,18 @@ public class FeedbackDialog extends DialogFragment {
 		// Cheerless
 		final String[] items;
 		String[][] finerChoiceAdjectives = {
-				{ "Too Bright", "Too Dark", "Not Bright" },
-				{ "Ok", "Super ok", "Not ok" },
-				{ "Too cold", "Fine", "Not so cold" },
-				{ "Dark", "Not to dark", "Just ok" },
-				{ "Fresh", "Really fresh", "Stale" },
-				{ "Smelly", "Bad", "Really bad" },
-				{ "Cozy", "Super cozy", "yeah man!" }, { "Annoyed", "Crapy" },
-				{ "Warm", "Littl too hot" }, { "Fluffy" },
-				{ "Cheerless", "Sad" } };
+				{ "Brighter", "Very Bright" },
+				{ "Just fine", "Great", "I'm High" },
+				{ "Colder", "Very cold", "Unbearable" },
+				{ "Darker", "Very Dark", "Ghostly dark" },
+				{ "Just fresh", "Very fresh" },
+				{ "Smelly", "Irresistable"},
+				{ "Cozy", "Really cozy", "Love my space." }, 
+				{ "Bad mood", "Very annoying" },
+				{ "Very warm", "Hot" }, 
+				{ "Humid","Very wet","Dry","Very Dry"}, // Fluffy => Humidity
+				{ "Quite", "Noisy", "Very Noisy" }  // Cheerless => Noise
+				};
 
 		final String item = savedInstanceState.getString(CHOSEN_ADJECTIVE);
 		String[] keys = DetailedFeedbackFragment.mButtonAdjectives;
