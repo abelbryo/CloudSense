@@ -63,7 +63,7 @@ public class ClimateParamDescription extends Fragment {
 		if (Data.getValue(position).equals(ParamEnum.TEMPERATURE.getRowName())) {
 			mc = new TemperatureChart(layout);
 			mc.draw(getActivity());
-			descTitle.setText(Data.getValue(position) + "         24.3 ºc");
+			descTitle.setText(Data.getValue(position) + "         17.7 ºc");
 		} else if (Data.getValue(position).equals(
 				ParamEnum.HUMIDITY.getRowName())) {
 			mc = new HumidityChart(layout);
