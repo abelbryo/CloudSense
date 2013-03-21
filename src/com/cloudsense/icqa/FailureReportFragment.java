@@ -13,6 +13,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -45,12 +46,16 @@ public class FailureReportFragment extends Fragment {
 
 			@Override
 			public void onClick(View v) {
-				if (mEditText.getText().toString().length() == 0)
+				if (mEditText.getText().toString().length() == 0) {
 					Toast.makeText(getActivity(),
 							"Form is empty.Report not delivered.",
 							Toast.LENGTH_SHORT).show();
-				else
+				} else {
 					new SendWithAsyncTask().execute(URL);
+				}
+				Intent intent = getActivity().getIntent();
+				intent.setClass(getActivity(), MainActivity.class);
+				startActivity(intent);
 			}
 		});
 	}
