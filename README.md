@@ -7,7 +7,7 @@ Dependency jar files
 ======================
 android-suppport-v7-gridlayout.jar
 ---------------------------
-GridLayout in Android was added in API Level 14. If you want to use for older platforms, they you will have to import the support library. Import * SDK > extras > android > support > v7 > gridlayout* into eclipse and add it as a library to the project.  
+GridLayout in Android was added in API Level 14. If you want to use for older platforms, they you will have to import the support library. Import *sdk/extras/android/support/v7/gridlayout* into eclipse and add it as a library to the project.  
 
 * google-play-services_lib.jar
 * google-play-services.jar
