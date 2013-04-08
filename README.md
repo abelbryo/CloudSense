@@ -5,6 +5,8 @@ Cloudsense is an indoor climate quality assessment app for android. The App work
 
 Dependency jar files
 ======================
+Listed below are the libraries use in this app.
+
 GridLayout
 ---------------------------
 GridLayout in Android was added in API Level 14. If you want to use it for older platforms, you will have to import the support library. Import ***sdk/extras/android/support/v7/gridlayout*** into eclipse as an exisiting project and add it as a library to the project.  
