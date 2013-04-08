@@ -14,20 +14,20 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.cloudsense.icqa.DetailedFeedbackFragment.OnUserInputChangedListener;
+import com.cloudsense.icqa.DetailedFeedbackFragment.OnUserInputBubbleClickListener;
 import com.cloudsense.icqa.FeedbackDialog.FeedbackDialogListener;
 
 /**
  * The FeedbackActivity is the parent activity that contains the fragments <code>
  * SimpleFeedbackFragment, DetailedFeedbackFragment, and FailureReportFragment </code>.
- * It implements the FeedbackDialogListener and OnUserInputChangedListener interfaces 
+ * It implements the FeedbackDialogListener and OnUserInputBubbleClickListener interfaces 
  * to listen to events when a user clicks on the pop-up dialog and bubbles respectively. 
  * 
  * It also contains the ActionBar that contains three tabs. Note: the ActionBar is the 
  * only reason why the app doesn't work on pre API LEVEL 11 phones.
  */
 
-public class FeedbackActivity extends FragmentActivity  implements FeedbackDialogListener, OnUserInputChangedListener{
+public class FeedbackActivity extends FragmentActivity  implements FeedbackDialogListener, OnUserInputBubbleClickListener{
 
 	public static Context appContext;
 	private static final String TAB_1 = "SIMPLE";

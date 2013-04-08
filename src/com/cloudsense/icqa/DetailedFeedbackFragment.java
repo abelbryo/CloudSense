@@ -46,9 +46,23 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+/**
+ * The <code>DetailedFeedbackFragment</code> is where the user
+ * can click on a bunch of button to give feedback. This fragment
+ * defines an interface <code>OnUserInputBubbleClickListener</code>  
+ * to listen for click events on the bubbles in the EditText box and
+ * pass the events to the parent Activity. 
+ * 
+ * Upon clicking the Submit button, the user input in the EditeText box is
+ * converted into xml and sent to a given POST request URL.
+ * 
+ * It also creates bubbles a.k.a TextTokenizers from TextView.
+ */
+
+
 public class DetailedFeedbackFragment extends Fragment {
 
-	public static OnUserInputChangedListener mUserInputListener;
+	public static OnUserInputBubbleClickListener mUserInputListener;
 	
 	private static Context mAppContext;
 	private static EditText mEditText;
@@ -119,8 +133,11 @@ public class DetailedFeedbackFragment extends Fragment {
 		}
 				
 		mEditText.setMovementMethod(LinkMovementMethod.getInstance());
+		
+		// TextWatcher 
 		mEditText.addTextChangedListener(new TextWatcher() {
 
+			// Lousy way, I should changed this later
 			// If all the text is deleted
 			// enable the buttons again
 			@Override
@@ -248,11 +265,9 @@ public class DetailedFeedbackFragment extends Fragment {
 		}
 	}
 
-	// =================================================================
-	// Experimental UI
-	// Creating bubbles a.k.a Text tokenizer for the user feedback UI
-	// The clickableSpan event handler doesn't work for now.
-	// =================================================================
+	// ===========================================================
+	// == Creating the TextTokenizer. I also call them bubbles. ==
+	// ===========================================================
 
 	/**
 	 * Returns a textView with the passed String argument
@@ -327,22 +342,24 @@ public class DetailedFeedbackFragment extends Fragment {
 
 			ssb.setSpan(clickSpan, start, end,
 					Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-
 		}
 		return ssb;
 	}
 
-	public interface OnUserInputChangedListener {
+	/**
+	 * This interface passes events to the parent Activity
+	 */
+	public interface OnUserInputBubbleClickListener {
 		public void onUserInputSelected(View view, String item);
 	}
 
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);
 		try {
-			mUserInputListener = (OnUserInputChangedListener) activity;
+			mUserInputListener = (OnUserInputBubbleClickListener) activity;
 		} catch (ClassCastException e) {
 			throw new ClassCastException(activity.getClass().toString()
-					+ " should implement OnUserInputChangedListener");
+					+ " should implement OnUserInputBubbleClickListener");
 		}
 	}
 	
