@@ -12,8 +12,8 @@ GridLayout in Android was added in API Level 14. If you want to use it for older
 Google Play Services API
 -------------------------
 The Google play services api is essential for accessing the Google maps api and other Google services. As of this writing, the Google play APK cannot be installed on the emulator, though there are tweaks to do that. So I recommend testing it on the device. Install or update Google play on your device. And follow along [this guide](http://developer.android.com/google/play-services/setup.html). The two important jars are:
-1. *google-play-services_lib.jar* and
-2. *google-play-services.jar*
+ - *google-play-services_lib.jar* 
+ - *google-play-services.jar*
 
 Facebook API
 --------------
