@@ -13,6 +13,12 @@ import com.facebook.SessionState;
 import com.facebook.model.GraphUser;
 import com.facebook.widget.UserSettingsFragment;
 
+/**
+ * This is the Facebook login page. Upon on login a
+ * Facebook session is created. And the user continues to
+ * to the FeedbackActivity. 
+ */
+
 public class LoginUsingFacebook extends FragmentActivity {
 	private UserSettingsFragment userSettingsFragment;
 	
@@ -20,6 +26,9 @@ public class LoginUsingFacebook extends FragmentActivity {
 	
 	
 
+	/**
+	 * Loads the UI and makes a request.
+	 */
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.login_fragment_activity);
@@ -51,7 +60,6 @@ public class LoginUsingFacebook extends FragmentActivity {
 	            if (session == Session.getActiveSession()) {
 	                if (user != null) {
 	                    // Toast.makeText(getApplicationContext(), user.getFirstName()+" - "+user.getId(), Toast.LENGTH_LONG).show();
-	                    
 	                    Intent intent = new Intent(LoginUsingFacebook.this, FeedbackActivity.class); 
 						intent.putExtra(FACEBOOK_USER_ID, user.getId());
 	                    startActivity(intent);

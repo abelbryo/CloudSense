@@ -6,6 +6,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+
+/**
+ * This is the first Activity that runs on launch of the app.
+ * It has a login button which on click, redirects to
+ * the LoginUsingFacebook class.
+ */
+
 public class Login extends Activity {
 	
 	private Button buttonLoginFragment;

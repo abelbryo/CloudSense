@@ -17,6 +17,16 @@ import android.widget.Toast;
 import com.cloudsense.icqa.DetailedFeedbackFragment.OnUserInputChangedListener;
 import com.cloudsense.icqa.FeedbackDialog.FeedbackDialogListener;
 
+/**
+ * The FeedbackActivity is the parent activity that contains the fragments <code>
+ * SimpleFeedbackFragment, DetailedFeedbackFragment, and FailureReportFragment </code>.
+ * It implements the FeedbackDialogListener and OnUserInputChangedListener interfaces 
+ * to listen to events when a user clicks on the pop-up dialog and bubbles respectively. 
+ * 
+ * It also contains the ActionBar that contains three tabs. Note: the ActionBar is the 
+ * only reason why the app doesn't work on pre API LEVEL 11 phones.
+ */
+
 public class FeedbackActivity extends FragmentActivity  implements FeedbackDialogListener, OnUserInputChangedListener{
 
 	public static Context appContext;
@@ -100,6 +110,8 @@ public class FeedbackActivity extends FragmentActivity  implements FeedbackDialo
 		outState.putInt(SimpleFeedbackFragment.SEEKBAR_PROGRESS, SimpleFeedbackFragment.mCurrentProgress);
 	}
 
+	
+	// Happens when the user clicks on the remove button in the pop-up dialog
 	@Override
 	public void onDialogNegativeButtonClick(DialogInterface dialog, String item) {
 		String formVal = input.toString();
@@ -109,7 +121,7 @@ public class FeedbackActivity extends FragmentActivity  implements FeedbackDialo
 		
 	}
 
-	// Happens when the user clicks on the lists
+	// Happens when the user clicks on the lists in the pop-up dialog
 	@Override
 	public void onDialogListItemClick(String[] items, String item, int index) {
 		String formVal = input.toString();

@@ -12,23 +12,31 @@ import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 
+/**
+ * The <code>SimpleFeedbackFragment</code> consists of a Slider/SeekBar and two
+ * buttons. Upon clicking Submit button, it will redirect to
+ * <code>MainActivity</code>, which is were we have the list of climate
+ * parameters. These are temperature, humidity etc.
+ * 
+ * At the moment the slider values are not sent anywhere. That should be FIXED,
+ * when the server side is ready.
+ */
+
 public class SimpleFeedbackFragment extends Fragment {
 
 	private SeekBar mSeekBar;
 	private Button mSubmitButton;
 	private Button mMoreButton;
-	
+
 	protected static int mCurrentProgress = 5;
 	protected static final String SEEKBAR_PROGRESS = "progress";
-	
-	
-	public void onActivityCreated(Bundle savedInstanceState){
+
+	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-			if(savedInstanceState != null)
-				mCurrentProgress = savedInstanceState.getInt(SEEKBAR_PROGRESS);
+		if (savedInstanceState != null)
+			mCurrentProgress = savedInstanceState.getInt(SEEKBAR_PROGRESS);
 	}
-	
-	
+
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		if (container == null) {
@@ -82,6 +90,7 @@ public class SimpleFeedbackFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				// TO DO: First submit the value of the seekBar
+				// Then redirect
 				Intent intent = getActivity().getIntent();
 				intent.setClass(getActivity(), MainActivity.class);
 				startActivity(intent);
@@ -99,7 +108,7 @@ public class SimpleFeedbackFragment extends Fragment {
 				ft.addToBackStack(null);
 				ft.commit();
 
-				// select the detailed tab, not best way but works
+				// select the detailed tab
 				getActivity().getActionBar().setSelectedNavigationItem(1);
 			}
 		});
