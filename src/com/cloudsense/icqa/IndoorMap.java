@@ -40,9 +40,9 @@ public class IndoorMap extends android.support.v4.app.FragmentActivity {
 	public void setUpMap() {
 		mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
-		LatLng point = new LatLng(60.18716, 24.81899);
+		LatLng point = new LatLng(60.18727982509214, 24.818671122193336);
 		MarkerOptions marker = new MarkerOptions().position(point)
-				.title("TUAS").snippet("Here is where we work");
+				.title("Office 2531").snippet("Temp: 17.7 ¼c, RH: 54.3 %, Lumin: 150 lux, CO2: 562 ppm");
 		mMap.addMarker(marker);
 		mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(point, 17.0f));
 		

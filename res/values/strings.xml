@@ -30,7 +30,7 @@
     
     <string name="button5">Fresh</string>
     <string name="button6">Smelly</string>
-    <string name="button10">Humid</string>
+    <string name="button10">Humidity</string>
     
     <string name="button7">Cozy</string>
     <string name="button8">Annoyed</string>
@@ -51,7 +51,7 @@
     
     <!-- Failure report -->
     <string name="submit_failure_report">Report</string>
-    <string name="title_failure_report">Report faults from below.</string>
+    <string name="title_failure_report">Report faults</string>
     
     <!-- indoor map  -->
      <string name="transparency">Transparency</string>
