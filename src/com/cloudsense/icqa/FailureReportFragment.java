@@ -23,6 +23,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+/**
+ * The <code>FailureReportFragment</code> is where the user 
+ * sends text message to server.
+ */
+
 public class FailureReportFragment extends Fragment {
 	private EditText mEditText;
 	private Button mButton;
@@ -60,6 +65,11 @@ public class FailureReportFragment extends Fragment {
 		});
 	}
 
+	/**
+	 * Inner class for sending the report to a remote Url.
+	 * This should always be done using AsyncTask not to block 
+	 * the UI thread.
+	 */
 	private class SendWithAsyncTask extends AsyncTask<String, String, String> {
 
 		@Override

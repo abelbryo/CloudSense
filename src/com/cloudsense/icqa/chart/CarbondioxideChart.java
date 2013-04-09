@@ -15,6 +15,12 @@ import android.content.Context;
 import android.graphics.Color;
 import android.view.ViewGroup;
 
+/**
+ * Populates a fake TimeSeries data and prepares it to be drawn 
+ * in the <code>ClimateParamDescription</code> fragment.
+ */
+
+
 public class CarbondioxideChart extends MotherChart{
 
 	private GraphicalView mChartView;

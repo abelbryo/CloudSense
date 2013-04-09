@@ -8,6 +8,12 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
+/**
+ * This is the type a type of ListFragment where we have 
+ * the different climate parameters. Climate parameters are
+ * temperature, humidity, luminance and co2.
+ *
+ */
 public class ClimateParameter extends ListFragment {
 	OnClimateParamSelectedListener mCallback;
 	private CustomData[] mData = Data.getClimateParams();
@@ -68,7 +74,7 @@ public class ClimateParameter extends ListFragment {
 	}
 	
 	/**
-	 * For some reason this doesn't work.
+	 * This doesn't work yet. Should be fixed!!
 	 * @param activate
 	 * @param v
 	 */

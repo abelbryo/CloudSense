@@ -56,7 +56,8 @@ import android.widget.TextView;
  * Upon clicking the Submit button, the user input in the EditeText box is
  * converted into xml and sent to a given POST request URL.
  * 
- * It also creates bubbles a.k.a TextTokenizers from TextView.
+ * The class also contains methods to create bubbles a.k.a TextTokenizers
+ * from TextView.
  */
 
 
@@ -353,6 +354,7 @@ public class DetailedFeedbackFragment extends Fragment {
 		public void onUserInputSelected(View view, String item);
 	}
 
+	@Override
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);
 		try {
@@ -363,7 +365,7 @@ public class DetailedFeedbackFragment extends Fragment {
 		}
 	}
 	
-	
+	@Override
 	public void onSaveInstanceState(Bundle outState){
 		super.onSaveInstanceState(outState);
 	}

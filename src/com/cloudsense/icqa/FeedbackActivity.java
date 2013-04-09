@@ -18,26 +18,27 @@ import com.cloudsense.icqa.DetailedFeedbackFragment.OnUserInputBubbleClickListen
 import com.cloudsense.icqa.FeedbackDialog.FeedbackDialogListener;
 
 /**
- * The FeedbackActivity is the parent activity that contains the fragments <code>
- * SimpleFeedbackFragment, DetailedFeedbackFragment, and FailureReportFragment </code>.
- * It implements the FeedbackDialogListener and OnUserInputBubbleClickListener interfaces 
- * to listen to events when a user clicks on the pop-up dialog and bubbles respectively. 
+ * The FeedbackActivity is the parent activity that contains the fragments
+ * <code> SimpleFeedbackFragment, DetailedFeedbackFragment, and FailureReportFragment </code>.
+ * It implements the FeedbackDialogListener and OnUserInputBubbleClickListener
+ * interfaces to listen to events when a user clicks on the pop-up dialog and
+ * bubbles respectively.
  * 
- * It also contains the ActionBar that contains three tabs. Note: the ActionBar is the 
- * only reason why the app doesn't work on pre API LEVEL 11 phones.
+ * It also contains the ActionBar that contains three tabs. Note: the ActionBar
+ * is the only reason why the app doesn't work on pre API LEVEL 11 phones.
  */
 
-public class FeedbackActivity extends FragmentActivity  implements FeedbackDialogListener, OnUserInputBubbleClickListener{
+public class FeedbackActivity extends FragmentActivity implements
+		FeedbackDialogListener, OnUserInputBubbleClickListener {
 
 	public static Context appContext;
 	private static final String TAB_1 = "SIMPLE";
 	protected static final String TAB_2 = "DETAILED";
 	protected static final String TAB_3 = "REPORT";
-		
+
 	private Editable input;
 	private ActionBar actionbar;
-	
-	
+
 	// For saving state
 	public static final String TAB = "tab"; // The current tab
 
@@ -45,7 +46,6 @@ public class FeedbackActivity extends FragmentActivity  implements FeedbackDialo
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.feedback_main_layout);
 		appContext = getApplicationContext();
-		
 
 		// ActionBar
 		actionbar = getActionBar();
@@ -61,20 +61,20 @@ public class FeedbackActivity extends FragmentActivity  implements FeedbackDialo
 
 		simpleTab.setTabListener(new FeedbackTabListener(simpleFeedback));
 		detailedTab.setTabListener(new FeedbackTabListener(detailedFeedback));
-		failureReportTab.setTabListener(new FeedbackTabListener(failureReportForm));
-		
+		failureReportTab.setTabListener(new FeedbackTabListener(
+				failureReportForm));
+
 		actionbar.addTab(simpleTab);
 		actionbar.addTab(detailedTab);
 		actionbar.addTab(failureReportTab);
-		
-		if(savedInstanceState != null){
+
+		if (savedInstanceState != null) {
 			actionbar.setSelectedNavigationItem(savedInstanceState.getInt(TAB));
-			SimpleFeedbackFragment.mCurrentProgress = savedInstanceState.getInt(SimpleFeedbackFragment.SEEKBAR_PROGRESS);
+			SimpleFeedbackFragment.mCurrentProgress = savedInstanceState
+					.getInt(SimpleFeedbackFragment.SEEKBAR_PROGRESS);
 		}
 
 	} // onCreate
-	
-		
 
 	class FeedbackTabListener implements ActionBar.TabListener {
 		public Fragment fragment;
@@ -103,14 +103,14 @@ public class FeedbackActivity extends FragmentActivity  implements FeedbackDialo
 		}
 
 	} // FeedBackListener
-	
-	public void onSaveInstanceState(Bundle outState){
+
+	public void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
 		outState.putInt(TAB, getActionBar().getSelectedNavigationIndex());
-		outState.putInt(SimpleFeedbackFragment.SEEKBAR_PROGRESS, SimpleFeedbackFragment.mCurrentProgress);
+		outState.putInt(SimpleFeedbackFragment.SEEKBAR_PROGRESS,
+				SimpleFeedbackFragment.mCurrentProgress);
 	}
 
-	
 	// Happens when the user clicks on the remove button in the pop-up dialog
 	@Override
 	public void onDialogNegativeButtonClick(DialogInterface dialog, String item) {
@@ -118,7 +118,7 @@ public class FeedbackActivity extends FragmentActivity  implements FeedbackDialo
 		int start = formVal.indexOf(item);
 		int end = start + item.length() + 1;
 		input.replace(start, end, "");
-		
+
 	}
 
 	// Happens when the user clicks on the lists in the pop-up dialog
@@ -126,22 +126,23 @@ public class FeedbackActivity extends FragmentActivity  implements FeedbackDialo
 	public void onDialogListItemClick(String[] items, String item, int index) {
 		String formVal = input.toString();
 		int start = formVal.indexOf(item);
-		int end = start + item.length()+1;
+		int end = start + item.length() + 1;
 		input.replace(start, end, "");
-		input.insert(start, DetailedFeedbackFragment.createTextTokenizer(items[index]));
+		input.insert(start,
+				DetailedFeedbackFragment.createTextTokenizer(items[index]));
 	}
 
-	
 	// Happens when the user clicks on the bubbles
 	@Override
 	public void onUserInputSelected(View view, String item) {
 		FeedbackDialog feedbackDialog = new FeedbackDialog();
-		Log.d(getClass().toString(), item); 
+		Log.d(getClass().toString(), item);
 		Bundle args = new Bundle();
 		args.putString(FeedbackDialog.CHOSEN_ADJECTIVE, item);
 		feedbackDialog.setArguments(args);
-		feedbackDialog.show(getSupportFragmentManager(), "SimpleFeedbackDialog");
-		input = ((EditText)view).getText(); 
-		
+		feedbackDialog
+				.show(getSupportFragmentManager(), "SimpleFeedbackDialog");
+		input = ((EditText) view).getText();
+
 	}
 } // == END ==

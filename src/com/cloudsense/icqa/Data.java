@@ -1,8 +1,8 @@
 package com.cloudsense.icqa;
 
 /**
- * The @code{Data} class refers the the list row value resources and contains
- * the text values to be displayed when the items are clicked in the list.
+ * The @code{Data} class refers the the list row value resources 
+ * in the <code>ClimateParameter</code> fragment.
  */
 
 public class Data {

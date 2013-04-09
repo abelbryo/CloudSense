@@ -1,5 +1,11 @@
 package com.cloudsense.icqa;
 
+/**
+ * Represents a row data in the <code>ClimateParameter</code> Fragment
+ *
+ */
+
+
 public class CustomData {
 	private int icon;
 	private String title;

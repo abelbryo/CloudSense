@@ -5,7 +5,7 @@ Cloudsense is an indoor climate quality assessment app for android. The App work
 
 Dependency jar files
 ======================
-Listed below are the libraries use in this app.
+Listed below are the libraries used in this app.
 
 GridLayout
 ---------------------------

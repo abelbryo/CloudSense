@@ -5,6 +5,12 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.view.Menu;
 
+/**
+ * This FragmentActivity contains to Fragments. These are
+ * the <code>ClimateParameter</code> and <code>ClimateParamDescription</code> fragments.
+ *  
+ */
+
 public class MainActivity extends FragmentActivity implements
 		ClimateParameter.OnClimateParamSelectedListener {
 
@@ -32,6 +38,13 @@ public class MainActivity extends FragmentActivity implements
 		return true;
 	}
 
+	
+	/**
+	 *  This method gets called when the user clicks on one of 
+	 *  the list item in the climate parameter fragment i.e. when 
+	 *  the user clicks on the temperature or humidity.
+	 */
+	
 	@Override
 	public void onClimateParamSelected(int position) {
 		ClimateParamDescription desc = (ClimateParamDescription) getSupportFragmentManager()

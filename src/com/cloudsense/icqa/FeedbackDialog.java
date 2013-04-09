@@ -7,6 +7,12 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 
+/**
+ * This is the class the makes up the Dialog box that pops
+ * up when clicking the bubbles in the EditText box in the 
+ * DetailedFeedbackFragment.
+ */
+
 public class FeedbackDialog extends DialogFragment {
 
 	public FeedbackDialogListener mDialogListener;
@@ -15,6 +21,11 @@ public class FeedbackDialog extends DialogFragment {
 	public static final String ITEMS = "items";
 	public static final String CHOSEN_ADJECTIVE = "chosen_adjective";
 
+	/**
+	 * The <code>FeedbackDialogListener</code> listens for events on the pop-up
+	 * dialog. These events are,  the click on the Remove button and the click
+	 * on the list items in the dialog.
+	 */
 	public interface FeedbackDialogListener {
 		public void onDialogNegativeButtonClick(DialogInterface dialog,
 				String item);
@@ -29,23 +40,16 @@ public class FeedbackDialog extends DialogFragment {
 
 		savedInstanceState = getArguments();
 
-		// button adjectives are
-		// Bright, Ok, Cold, Dark, Fresh, Smelly, Cozy, Annoyed, Warm, Fluffy,
-		// Cheerless
 		final String[] items;
-		String[][] finerChoiceAdjectives = {
-				{ "Brighter", "Very Bright" },
+		String[][] finerChoiceAdjectives = { { "Brighter", "Very Bright" },
 				{ "Just fine", "Great", "I'm High" },
 				{ "Colder", "Very cold", "Unbearable" },
 				{ "Darker", "Very Dark", "Ghostly dark" },
-				{ "Just fresh", "Very fresh" },
-				{ "Smelly", "Irresistable"},
-				{ "Cozy", "Really cozy", "Love my space." }, 
-				{ "Bad mood", "Very annoying" },
-				{ "Very warm", "Hot" }, 
-				{ "Humid","Very wet","Dry","Very Dry"}, // Fluffy => Humidity
-				{ "Quite", "Noisy", "Very Noisy" }  // Cheerless => Noise
-				};
+				{ "Just fresh", "Very fresh" }, { "Smelly", "Irresistable" },
+				{ "Cozy", "Really cozy", "Love my space." },
+				{ "Bad mood", "Very annoying" }, { "Very warm", "Hot" },
+				{ "Humid", "Very wet", "Dry", "Very Dry" },
+				{ "Quite", "Noisy", "Very Noisy" } };
 
 		final String item = savedInstanceState.getString(CHOSEN_ADJECTIVE);
 		String[] keys = DetailedFeedbackFragment.mButtonAdjectives;

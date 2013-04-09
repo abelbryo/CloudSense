@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 /**
  * A custom ArrayAdapter to display an icon and a text in a single row in a
- * FragmentList.
+ * FragmentList i.e. in the <code>ClimateParamter</code> FragmentList.
  */
 
 public class CustomArrayAdapter extends ArrayAdapter<CustomData> {

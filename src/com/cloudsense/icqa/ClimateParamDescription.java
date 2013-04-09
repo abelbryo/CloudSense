@@ -14,12 +14,17 @@ import com.cloudsense.icqa.chart.LuminanceChart;
 import com.cloudsense.icqa.chart.MotherChart;
 import com.cloudsense.icqa.chart.TemperatureChart;
 
+/**
+ * This is where the chart gets attached to the Fragment.
+ * 
+ */
+
+
 public class ClimateParamDescription extends Fragment {
 	public final static String ARG_POSITION = "loc";
 	private int mCurrent = -1;
 
-	// LinearLayout layout;
-
+	
 	/* This is the point where the fragment will be shown on screen. */
 	public View onCreateView(LayoutInflater inflater, ViewGroup parent,
 			Bundle savedInstanceState) {
