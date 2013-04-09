@@ -1,11 +1,7 @@
 ICQA
-==========
-Cloudsense is an indoor climate quality assessment app for android. The App works for Android 3.0 ( API LEVEL 11 ) and newer devices.
-
-
-Dependency jar files
-======================
-Listed below are the libraries used in this app.
+======
+Cloudsense is an indoor climate quality assessment app for android. The App works for Android 3.0 ( API LEVEL 11 ) and newer devices. It works by reading data from remote sensors.
+Listed below are the dependency libraries used in this app. 
 
 GridLayout
 ---------------------------
